@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Automatic Job Tracker",
+  "version": "1",
+  "description": "An extension that automatically tracks job status based on your work email, categorizing progress into five categories.",
+  "key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAys+YtwHGlJcV9AAGXWp7Tj0FwJ/reHEbEC9YiCwolaxgJInfkOWzge0/RN/2h17zjM/PAT4olF45lQ7Hohq2h9F0VRD8b5pSxXBJzjNh/bbJ6YgRRwCAB3KaRKY1axZTTMtDm7yquBbhxTKUdiwSLtY3Hn4SNi/p+LSbS4LiJR4mqhZ5fm1l6vULQUOrtL1OubQmJvva9NfyWuY2pb8/F3Pp8YZiLBWFcYwyzUD4YBlX2NTmC0vfrKxOc4wCizctMOpym+MRJcINDQN7QtY0mzaQUJdhdoZpBT1Lt3kW0JgADjkCqL3TBzLBV8O9+vJngidteDpqmexwx+A0T18vQwIDAQAB",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "tabs",
+    "bookmarks",
+    "storage"
+  ],
+  "optional_permissions": [
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "https://www.blogger.com/"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "icons": {
+    "48": "icon.png"
+  }
+}

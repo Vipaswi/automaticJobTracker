@@ -1,0 +1,12 @@
+{
+  "name": "automatic_job_tracker",
+  "version": "1.0.0",
+  "description": "An automated system to pull job application updates from gmail and track them accordingly.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Vipaswi Jung Thapa",
+  "license": "ISC"
+}
