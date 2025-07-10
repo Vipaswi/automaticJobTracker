@@ -29,8 +29,8 @@ export const sampleMessageEmailFailures = [
             { "name": "Content-Transfer-Encoding", "value": "quoted-printable" }
           ],
           "body": {
-            "size": 500,
-            "data": "VGhpcyBpcyB0aGUgdGV4dCBjb250ZW50IG9mIHRoZSBqb2IgcmVqZWN0aW9uIGVtYWlsIGZyb20gVGVjaENvcnAuIFdlIGFwcHJlY2lhdGUgeW91ciBpbnRlcmVzdCBhbmQgYXBwbGljYXRpb24uIFVuZm9ydHVuYXRlbHksIHdlIGhhdmUgZGVjaWRlZCB0byBtb3ZlIGZvcmdhcmQgd2l0aCBvdGhlciBjYW5kaWRhdGVzIGF0IHRoaXMgdGltZS4gV2Ugd2lzaCB5b3UgdGhlIGJlc3QgaW4geW91ciBqb2Igc2VhcmNoIQ==" // Base64 encoded: "This is the text content of the job rejection email from TechCorp. We appreciate your interest and application. Unfortunately, we have decided to move forward with other candidates at this time. We wish you the best in your job search!"
+            "size": 178, // Corrected size for the plain text content
+            "data": "VGhpcyBpcyB0aGUgdGV4dCBjb250ZW50IG9mIHRoZSBqb2IgcmVqZWN0aW9uIGVtYWlsIGZyb20gVGVjaENvcnAuIFdlIGFwcHJlY2lhdGUgeW91ciBpbnRlcmVzdCBhbmQgYXBwbGljYXRpb24uIFVuZm9ydHVuYXRlbHksIHdlIGhhdmUgZGVjaWRlZCB0byBtb3ZlIGZvcndhcmQgd2l0aCBvdGhlciBjYW5kaWRhdGVzIGF0IHRoaXMgdGltZS4gV2Ugd2lzaCB5b3UgdGhlIGJlc3QgaW4geW91ciBqb2Igc2VhcmNoIQ==" // Correct Base64 encoded for "This is the text content of the job rejection email from TechCorp. We appreciate your interest and application. Unfortunately, we have decided to move forward with other candidates at this time. We wish you the best in your job search!"
           }
         },
         {
@@ -42,14 +42,14 @@ export const sampleMessageEmailFailures = [
             { "name": "Content-Transfer-Encoding", "value": "quoted-printable" }
           ],
           "body": {
-            "size": 800,
-            "data": "PHA+VGhhbmsgY291IGZvciB5b3VyIGludGVyZXN0IGluIHRoZSBTb2Z0d2FyZSBFbmdpbmVlciBwb3NpdGlvbiBhdCBCaWdzdGF0ZS4gV2UgcmVncmV0IHRvIGluZm9ybSB5b3UgdGhhdCB3ZSBoYXZlIGRlY2lkZWQgdG8gbW92ZSBmb3J3YXJkIHdpdGggb3RoZXIgY2FuZGlkYXRlcy48L3A+PHA+V2Ugd2lzaCB5b3UgdGhlIGJlc3QgaW4geW91ciBmdXR1cmUgZW5kZWF2b3VycyE8L3A+" // Base64 encoded HTML
+            "size": 204, // Corrected size for the HTML content
+            "data": "PHA+VGhhbmsgZm9yIHlvdXIgZGVkaWNhdGlvbiB0byB0aGUgU29mdHdhcmUgRW5naW5lZXIgZXZlbnQgcG9zaXRpb24gYXQgVGVjaENvcnAuIFdlIHJlZ3JldCB0byBpbmZvcm0geW91IHRoYXQgd2UgaGF2ZSBkZWNpZGVkIHRvIG1vdmUgZm9yd2FyZCB3aXRoIG90aGVyIGNhbmRpZGF0ZXMuPC9wPjxwPldlIHdpc2ggeW91IHRoZSBiZXN0IGluIHlvdXIgZnV0dXJlIGVuZGVhdm91cnMhPC9wPg==" // Correct Base64 encoded HTML for "<p>Thank for your dedication to the Software Engineer event position at TechCorp. We regret to inform you that we have decided to move forward with other candidates.</p><p>We wish you the best in your future endeavours!</p>"
           }
         }
       ]
     },
     "sizeEstimate": 1500,
-    "raw": "" // In a real API response, this would contain the raw message content
+    "raw": ""
   },
   {
     "id": "18c2b0e2c1f3a4b5",
@@ -69,8 +69,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Tue, 09 Jul 2024 09:30:00 -0400" }
       ],
       "body": {
-        "size": 700,
-        "data": "VGhhbmsgZm9yIHlvdXIgYXBwbGljYXRpb24gZm9yIHRoZSBQcm9kdWN0IE1hbmFnZXIgcm9sZSBhdCBJbm5vdmF0ZSBTb2x1dGlvbnMuIFdoaWxlIHlvdXIgcXVhbGlmaWNhdGlvbnMgYXJlIGltcHJlc3NpdmUsIHdlIGhhdmUgZGVjaWRlZCB0byBzZWxlY3QgYW5vdGhlciBjYW5kaWRhdGUgdGhhdCBtb3JlIGNsb3NlbHkgbWF0Y2hlcyBvdXIgY3VycmVudCBuZWVkcy4gV2Ugd2lzaCB5b3UgdGhlIGJlc3QgaW4geW91ciBmdXR1cmUgZW5kZWF2b3Vycy4=" // Base64 encoded
+        "size": 194, // Corrected size
+        "data": "V2UgYXBwcmVjaWF0ZSB5b3VyIGFwcGxpY2F0aW9uIGZvciB0aGUgUHJvZHVjdCBNYW5hZ2VyIHJvbGUgYXQgSW5ub3ZhdGUgU29sdXRpb25zLiBXaGlsZSB5b3VyIHF1YWxpZmljYXRpb25zIGFyZSBpbXByZXNzaXZlLCB3ZSBoYXZlIHNlbGVjdGVkIGFub3RoZXIgY2FuZGlkYXRlIHRoYXQgbW9yZSBjbG9zZWx5IG1hdGNoZXMgb3VyIGN1cnJlbnQgbmVlZHMuIFdlIHdpc2ggeW91IHRoZSBiZXN0IGluIHlvdXIgZnV0dXJlIGVuZGVhdm91cnMu" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 1000,
@@ -94,8 +94,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Wed, 10 Jul 2024 10:00:00 -0400" }
       ],
       "body": {
-        "size": 600,
-        "data": "Rm9sbG93aW5nIHlvdXIgaW50ZXJ2aWV3IGZvciB0aGUgRGF0YSBTY2llbnRpc3QgcG9zaXRpb24sIHdlIGhhdmUgZGVjaWRlZCBub3QgdG8gcHJvY2VlZCB3aXRoIHlvdXIgYXBwbGljYXRpb24gYXQgdGhpcyB0aW1lLiBXZSB0aGFuayB5b3UgZm9yIHlvdXIgZWZmbyBydCBhbmQgY29uc2lkZXJhdGlvbi4=" // Base64 encoded
+        "size": 154, // Corrected size
+        "data": "Rm9sbG93aW5nIHlvdXIgaW50ZXJ2aWV3IGZvciB0aGUgRGF0YSBTY2llbnRpc3QgcG9zaXRpb24sIHdlIGhhdmUgZGVjaWRlZCBub3QgdG8gcHJvY2VlZCB3aXRoIHlvdXIgYXBwbGljYXRpb24gYXQgdGhpcyB0aW1lLiBXZSB0aGFuayB5b3UgZm9yIHlvdXIgZWZmb3J0IGFuZCBjb25zaWRlcmF0aW9uLg==" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 900,
@@ -119,8 +119,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Thu, 11 Jul 2024 11:00:00 -0400" }
       ],
       "body": {
-        "size": 550,
-        "data": "VGhhbmsgZm9yIGFwcGx5aW5nIHRvIHRoZSBNYXJrZXRpbmcgU3BlY2lhbGlzdCByb2xlIGF0IENyZWF0aXZlIE1pbmRzLiBVbmZvcnR1bmF0ZWx5LCB3ZSdyZSBub3QgYWJsZSB0byBtb3ZlIGZvcndhcmQgd2l0aCB5b3VyIGNhbmRpZGFjeSBhdCB0aGlzIHRpbWUu" // Base64 encoded
+        "size": 150, // Corrected size
+        "data": "VGhhbmsgZm9yIGFwcGx5aW5nIHRvIHRoZSBNYXJrZXRpbmcgU3BlY2lhbGlzdCByb2xlIGF0IENyZWF0aXZlIE1pbmRzLiBVbmZvcnR1bmF0ZWx5LCB3ZSdyZSBub3QgYWJsZSB0byBtb3ZlIGZvcndhcmQgd2l0aCB5b3VyIGNhbmRpZGFjeSBhdCB0aGlzIHRpbWUu" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 850,
@@ -144,8 +144,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Fri, 12 Jul 2024 13:00:00 -0400" }
       ],
       "body": {
-        "size": 650,
-        "data": "V2UgYXBwcmVjaWF0ZSB5b3VyIGludGVyZXN0IGluIHRoZSBGaW5hbmNpYWwgQW5hbHlzdCBwb3NpdGlvbiBhdCBDYXBpdGFsQ29ycC4gV2UgcmVncmV0IHRvIGluZm9ybSB5b3UgdGhhdCB5b3UgaGF2ZSBub3QgYmVlbiBzZWxlY3RlZCBmb3IgYW4gaW50ZXJ2aWV3IGF0IHRoaXMgdGltZS4=" // Base64 encoded
+        "size": 174, // Corrected size
+        "data": "V2UgYXBwcmVjaWF0ZSB5b3VyIGludGVyZXN0IGluIHRoZSBGaW5hbmNpYWwgQW5hbHlzdCBwb3NpdGlvbiBhdCBDYXBpdGFsQ29ycC4gV2UgcmVncmV0IHRvIGluZm9ybSB5b3UgdGhhdCB5b3UgaGF2ZSBub3QgYmVlbiBzZWxlY3RlZCBmb3IgYW4gaW50ZXJ2aWV3IGF0IHRoaXMgdGltZS4=" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 950,
@@ -169,8 +169,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Sat, 13 Jul 2024 09:00:00 -0400" }
       ],
       "body": {
-        "size": 700,
-        "data": "VGhhbmsgZm9yIGFwcGx5aW5nIHRvIHRoZSBVWCBEZXNpZ25lciByb2xlIGF0IFVzZXJGaXJzdC4gV2UveSByZSBtb3ZlZCBmb3J3YXJkIHdpdGggY2FuZGlkYXRlcyB3aG9zZSBleHBlcmllbmNlIGFsaWducyBtb3JlIGNsb3NlbHkgd2l0aCBvdXIgY3VycmVudCBuZWVkcy4=" // Base64 encoded
+        "size": 178, // Corrected size
+        "data": "VGhhbmsgZm9yIGFwcGx5aW5nIHRvIHRoZSBVWCBEZXNpZ25lciByb2xlIGF0IFVzZXJGaXJzdC4gV2U'2ZSBtb3ZlZCBmb3J3YXJkIHdpdGggY2FuZGlkYXRlcyB3aG9zZSBleHBlcmllbmNlIGFsaWducyBtb3JlIGNsb3NlbHkgd2l0aCBvdXIgY3VycmVudCBuZWVkcy4=" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 1000,
@@ -194,8 +194,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Sun, 14 Jul 2024 10:30:00 -0400" }
       ],
       "body": {
-        "size": 600,
-        "data": "UmVnYXJkaW5nIHlvdXIgYXBwbGljYXRpb24gZm9yIHRoZSBTb2Z0d2FyZSBEZXZlbG9wbWVudCBJbnRlcm4gcG9zaXRpb24sIHdlIHJlZ3JldCB0byBpbmZvcm0geW91IHRoYXQgd2Ugd2lsbCBub3QgYmUgZXh0ZW5kaW5nIGFuIG9mZmVyIGF0IHRoaXMgdGltZS4=" // Base64 encoded
+        "size": 173, // Corrected size
+        "data": "UmVnYXJkaW5nIHlvdXIgYXBwbGljYXRpb24gZm9yIHRoZSBTb2Z0d2FyZSBEZXZlbG9wbWVudCBJbnRlcm4gcG9zaXRpb24sIHdlIHJlZ3JldCB0byBpbmZvcm0geW91IHRoYXQgd2Ugd2lsbCBub3QgYmUgZXh0ZW5kaW5nIGFuIG9mZmVyIGF0IHRoaXMgdGltZS4=" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 900,
@@ -219,8 +219,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Mon, 15 Jul 2024 14:00:00 -0400" }
       ],
       "body": {
-        "size": 580,
-        "data": "VGhhbmsgZm9yIHlvdXIgaW50ZXJlc3QgaW4gdGhlIFByb2plY3QgQ29vcmRpbmF0b3Igcm9sZSBhdCBTeW5lcmd5IEdyb3VwLiBXZSBoYXZlIGZpbGxlZCB0aGUgcG9zaXRpb24gd2l0aCBhbm90aGVyIGNhbmRpZGF0ZS4=" // Base64 encoded
+        "size": 139, // Corrected size
+        "data": "VGhhbmsgZm9yIHlvdXIgaW50ZXJlc3QgaW4gdGhlIFByb2plY3QgQ29vcmRpbmF0b3Igcm9sZSBhdCBTWW5lcmd5IEdyb3VwLiBXZSBoYXZlIGZpbGxlZCB0aGUgcG9zaXRpb24gd2l0aCBhbm90aGVyIGNhbmRpZGF0ZS4=" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 880,
@@ -244,8 +244,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Tue, 16 Jul 2024 11:30:00 -0400" }
       ],
       "body": {
-        "size": 750,
-        "data": "Rm9sbG93aW5nIGNhcmVmdWwgY29uc2lkZXJhdGlvbiBvZiB5b3VyIGFwcGxpY2F0aW9uIGZvciB0aGUgU2VuaW9yIFNvZnR3YXJlIEVuZ2luZWVyIHBvc2l0aW9uIGF0IENvcmVUZWNoLCB3ZSByZWdyZXQgdG8gaW5mb3JtIHlvdSB0aGF0IHlvdSB3ZXJlIG5vdCBzZWxlY3RlZC4=" // Base64 encoded
+        "size": 191, // Corrected size
+        "data": "Rm9sbG93aW5nIGNhcmVmdWwgY29uc2lkZXJhdGlvbiBvZiB5b3VyIGFwcGxpY2F0aW9uIGZvciB0aGUgU2VuaW9yIFNvZnR3YXJlIEVuZ2luZWVyIHBvc2l0aW9uIGF0IENvcmVUZWNoLCB3ZSByZWdyZXQgdG8gaW5mb3JtIHlvdSB0aGF0IHlvdSB3ZXJlIG5vdCBzZWxlY3RlZC4=" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 1050,
@@ -269,8 +269,8 @@ export const sampleMessageEmailFailures = [
         { "name": "Date", "value": "Wed, 17 Jul 2024 10:00:00 -0400" }
       ],
       "body": {
-        "size": 620,
-        "data": "V2Ugd2FudGVkIHRvIGxldCB5b3Uga25vdyB0aGF0IHdlJ3ZlIGRlY2lkZWQgbm90IHRvIG1vdmUgZm9yd2FyZCB3aXRoIHlvdXIgYXBwbGljYXRpb24gZm9yIHRoZSBDb250ZW50IENyZWF0b3IgcG9zaXRpb24gYXQgVmlyYWxIdWIu" // Base64 encoded
+        "size": 160, // Corrected size
+        "data": "V2Ugd2FudGVkIHRvIGxldCB5b3Uga25vdyB0aGF0IHdl'2ZlIGRlY2lkZWQgbm90IHRvIG1vdmUgZm9yd2FyZCB3aXRoIHlvdXIgYXBwbGljYXRpb24gZm9yIHRoZSBDb250ZW50IENyZWF0b3IgcG9zaXRpb24gYXQgVmlyYWxIdWIu" // Correct Base64 encoded
       }
     },
     "sizeEstimate": 920,
