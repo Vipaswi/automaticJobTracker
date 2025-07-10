@@ -13,6 +13,7 @@ import { google, GoogleApis } from 'googleapis';
 
 
 export enum progressStatus{
+  NULL = "NULL",
   IRRELEVANT = "IRRELEVANT",
   NEW = "NEW",
   FAIL = "FAIL",
@@ -33,16 +34,26 @@ export function parseEmail(message: any) : progressStatus {
 
   // Get the title and body from a message object from Gmail
   let title: string = message.payload.messageHeaders[2].value;
+
+  let URLBase64 : string = "";
+  let bodyBase64 : string = "";
+  let body : string = "";
+
+  if(message.payload.parts){
+    URLBase64 = message.payload.parts[0].body.data; // just get the first: one plain text/html
+  } else {
+    URLBase64 = message.payload.body.data; // get the data straight from the payload
+  }
+
+  bodyBase64 = decodeURIComponent(URLBase64);
+  body = atob(bodyBase64);
+
   console.log(title);
-  let isJobApplication = isApplication(title);
-  let body: string = "";
+
+  let isJobApplication = isApplication(title) || isApplication(body);
 
   // Parse data and determine whether it's an application
-  if(isJobApplication){
-    let URLBase64 = message.payload.body.data;
-    let bodyBase64 = decodeURIComponent(URLBase64);
-    body = atob(bodyBase64);
-  } else {
+  if(!isJobApplication){
     return progressStatus.IRRELEVANT;
   }
   
@@ -60,22 +71,22 @@ export function parseEmail(message: any) : progressStatus {
     return progressStatus.NEW;
   }
 
-  return progressStatus.IRRELEVANT;
+  return progressStatus.NULL;
 
 }
 
 function isInterview(body: string){
-  return match(interviewPhrases, body);
+  return match(interviewPhrases.values(), body);
 }
 
 function isOffer(body: string){
-  return match(offerPhrases, body);
+  return match(offerPhrases.values(), body);
 }
 
 function match(phraseObject: any, text: string) : boolean {
   //if match, return true
   for(const phrase in phraseObject){
-    if(text.match(phrase)){
+    if(text.toLowerCase().match(phrase.toLowerCase())){
       console.log("\tMatched Phrase: " + phrase);
       return true;
     }
