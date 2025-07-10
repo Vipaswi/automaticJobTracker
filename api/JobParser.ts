@@ -28,14 +28,15 @@ function parseEmail(message: any) {
   // Get the title and body from a message object from Gmail
   let title: string = message.payload.messageHeaders[2].value;
   let isJobApplication = isApplication(title);
+  let body: string = "";
 
   // Parse data and determine whether it's an application
   if(isJobApplication){
     let bodyBase64 : Base64URLString = message.payload.body.data;
-    let body = atob(bodyBase64);
+    body = atob(bodyBase64);
   }
   
-  if(isNewApplication(title) && isJobApplication){
+  if(isNewApplication(body) && isJobApplication){
     // If it's a new application
   }
 
@@ -53,18 +54,18 @@ function match(phraseObject: any, text: string) : boolean {
 }
 
 function isApplication(title: string) : boolean {
-  return match()
+  return match(null, "");
 }
 
 /**
  * Takes an email string and determines if this 
  * is a new application.
  * 
- * @param title: email title
+ * @param body: email body
  * @param text the text to determine if it's new
  */
-function isNewApplication(title: string, text: string) : boolean {
-  return match(jobProgressPhrases.justApplied.values, text);
+function isNewApplication(body: string) : boolean {
+  return match(jobProgressPhrases.justApplied.values, body);
 }
 
 /**
