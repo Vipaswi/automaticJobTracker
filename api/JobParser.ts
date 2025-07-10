@@ -8,7 +8,7 @@
  */
 
 import * as fs from 'fs';
-import { jobProgressPhrases } from '../Phrases/commonPhrases';
+import { applicationPhrases, jobProgressPhrases } from '../Phrases/commonPhrases';
 import { google, GoogleApis } from 'googleapis';
 
 
@@ -44,30 +44,26 @@ export function parseEmail(message: any) : progressStatus {
     return progressStatus.IRRELEVANT;
   }
   
-  // Determine if it's a new application
-  if(isJobApplication && isNewApplication(body)){
-    // If it's a new application
-    return progressStatus.NEW;
-  } 
-  // The application already exists:
-  else if (isJobApplication && isRejection(body)) {
+  if (isJobApplication && isRejection(body)) {
     return progressStatus.FAIL;
   } else if(isJobApplication && isInterview(body)) {
     return progressStatus.INTERVIEW;
   } else if (isJobApplication && isOffer(body)){
     return progressStatus.OFFER;
+  } else if (isJobApplication && isNewApplication(body)){
+    return progressStatus.NEW;
   }
 
-  return progressStatus.NEW;
+  return progressStatus.IRRELEVANT;
 
 }
 
 function isInterview(body: string){
-  return true;
+  return false;
 }
 
 function isOffer(body: string){
-  return true;
+  return false;
 }
 
 function match(phraseObject: any, text: string) : boolean {
@@ -82,7 +78,7 @@ function match(phraseObject: any, text: string) : boolean {
 }
 
 function isApplication(title: string) : boolean {
-  return match(null, "");
+  return match(applicationPhrases, title);
 }
 
 /**

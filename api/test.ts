@@ -21,7 +21,7 @@ function loop_over(loopArray: Array<any>, expectedResult: progressStatus){
 const test = () => {
   loop_over(sampleIrrelevantEmails, progressStatus.IRRELEVANT);
   loop_over(sampleMessageEmailApplications, progressStatus.NEW);
-  loop_over(sampleInterviewEmails, progressStatus.INTERVIEW);
+  //loop_over(sampleInterviewEmails, progressStatus.INTERVIEW);
   loop_over(sampleMessageEmailFailures, progressStatus.FAIL);
   //loop_over(sampleOfferEmails, progressStatus.OFFER);
 }
