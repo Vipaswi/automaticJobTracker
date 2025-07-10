@@ -12,6 +12,14 @@ import { jobProgressPhrases } from '../Phrases/commonPhrases';
 import { google, GoogleApis } from 'googleapis';
 
 
+export enum progressStatus{
+  IRRELEVANT,
+  NEW,
+  FAIL,
+  INTERVIEW,
+  OFFER
+}
+
 /**
  * The main function that parses an email,
  * determines the job role, location (if available),
@@ -21,9 +29,7 @@ import { google, GoogleApis } from 'googleapis';
  * @param title: the email title
  * @param text The email text
  */
-function parseEmail(message: any) {
-
-  
+export function parseEmail(message: any) : progressStatus {
 
   // Get the title and body from a message object from Gmail
   let title: string = message.payload.messageHeaders[2].value;
@@ -32,14 +38,36 @@ function parseEmail(message: any) {
 
   // Parse data and determine whether it's an application
   if(isJobApplication){
-    let bodyBase64 : Base64URLString = message.payload.body.data;
+    let bodyBase64 = message.payload.body.data;
     body = atob(bodyBase64);
+  } else {
+    return progressStatus.IRRELEVANT;
   }
   
-  if(isNewApplication(body) && isJobApplication){
+  // Determine if it's a new application
+  if(isJobApplication && isNewApplication(body)){
     // If it's a new application
+    return progressStatus.NEW;
+  } 
+  // The application already exists:
+  else if (isJobApplication && isRejection(body)) {
+    return progressStatus.FAIL;
+  } else if(isJobApplication && isInterview(body)) {
+    return progressStatus.INTERVIEW;
+  } else if (isJobApplication && isOffer(body)){
+    return progressStatus.OFFER;
   }
 
+  return progressStatus.NEW;
+
+}
+
+function isInterview(body: string){
+  return true;
+}
+
+function isOffer(body: string){
+  return true;
 }
 
 function match(phraseObject: any, text: string) : boolean {
@@ -75,14 +103,6 @@ function isNewApplication(body: string) : boolean {
  * @param title: email title
  * @param text the text to determine if it's new
  */
-function isRejection(title: string, text: string) : boolean {
-
-  //if match, return true
-  for(const phrases in jobProgressPhrases.justRejected){
-    if(text.match(phrases)){
-      return true;
-    }
-  }
-
-  return false;
+function isRejection(body: string) : boolean {
+  return match(jobProgressPhrases.justRejected.values(), body);
 }

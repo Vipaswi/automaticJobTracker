@@ -531,7 +531,7 @@ export const sampleMessageEmailApplications = [
   }
 ];
 
-export const irrelevantEmails = [
+export const sampleIrrelevantEmails = [
   {
     "id": "18c3e8baccde1f24",
     "threadId": "18c3e8baccde1f24",
@@ -809,7 +809,7 @@ export const irrelevantEmails = [
   }
 ];
 
-export const interviewEmails = [
+export const sampleInterviewEmails = [
   {
     "id": "18c4812346781934",
     "threadId": "18c4812346781934",
@@ -1062,7 +1062,7 @@ export const interviewEmails = [
   }
 ];
 
-export const offerEmails = [
+export const sampleOfferEmails = [
   {
     "id": "18c57a7890164489",
     "threadId": "18c57a7890164489",
