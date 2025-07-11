@@ -7,10 +7,12 @@
  * @author Vipaswi Thapa
  */
 
-import * as fs from 'fs';
+
 import { applicationPhrases, jobProgressPhrases, interviewPhrases, offerPhrases } from '../Phrases/commonPhrases';
 import { google, GoogleApis } from 'googleapis';
+import base64url from "base64url";
 
+const testing = true;
 
 export enum progressStatus{
   NULL = "NULL",
@@ -21,16 +23,21 @@ export enum progressStatus{
   OFFER = "OFFER"
 }
 
+function printOnFailure(printString: string, result : progressStatus, expected : progressStatus){
+  if(result != expected && testing){
+    console.log("Failed on: " + printString);
+  }
+}
+
 /**
  * The main function that parses an email,
  * determines the job role, location (if available),
  * and application status. Accordingly, it updates
  * the underlying CSV/JSON file.
  * 
- * @param title: the email title
- * @param text The email text
+ * @param message: the Gmail message in its API format
  */
-export function parseEmail(message: any) : progressStatus {
+export function parseEmail(message: any, expectedResult: progressStatus) : progressStatus {
 
   // Get the title and body from a message object from Gmail
   let title: string = message.payload.messageHeaders[2].value;
@@ -39,40 +46,42 @@ export function parseEmail(message: any) : progressStatus {
   let bodyBase64 : string = "";
   let body : string = "";
 
-  console.log("Payload Parts " + message.payload.parts);
-  console.log("Payload Body Data: " + message.payload.body.data);
-
   if(message.payload.parts != undefined){
     URLBase64 = message.payload.parts[0].body.data; // just get the first: one plain text/html
-    bodyBase64 = decodeURIComponent(URLBase64);
   } else {
     URLBase64 = message.payload.body.data; // get the data straight from the payload
-    bodyBase64 = URLBase64;
   }
 
-  let decodedMessage = Buffer.from(bodyBase64, 'base64');
-  body = decodedMessage.toString('base64');
+  URLBase64 = message.payload.body?.data || message.payload.parts[0].body.data;
+
+  body = base64url.decode(URLBase64);
 
   console.log(title);
+  console.log(body);
 
   let isJobApplication = isApplication(title) || isApplication(body);
 
   // Parse data and determine whether it's an application
   if(!isJobApplication){
+    printOnFailure(body, progressStatus.INTERVIEW, expectedResult);
     return progressStatus.IRRELEVANT;
   }
   
   // Go through options by rarity:
   if (isJobApplication && isOffer(body)){
+    printOnFailure(body, progressStatus.OFFER, expectedResult);
     return progressStatus.OFFER;
   }
   else if(isJobApplication && isInterview(body)) {
+    printOnFailure(body, progressStatus.INTERVIEW, expectedResult);
     return progressStatus.INTERVIEW;
   }
   else if (isJobApplication && isRejection(body)) {
+    printOnFailure(body, progressStatus.FAIL, expectedResult);
     return progressStatus.FAIL;
   } 
-  else if (isJobApplication && (isNewApplication(body) || isNewApplication(body))){
+  else if (isJobApplication && (isNewApplication(title) || isNewApplication(body))){
+     printOnFailure(body, progressStatus.NEW, expectedResult);
     return progressStatus.NEW;
   }
 
@@ -81,18 +90,18 @@ export function parseEmail(message: any) : progressStatus {
 }
 
 function isInterview(body: string){
-  return match(interviewPhrases.values(), body);
+  return match(interviewPhrases, body);
 }
 
 function isOffer(body: string){
-  return match(offerPhrases.values(), body);
+  return match(offerPhrases, body);
 }
 
 function match(phraseObject: any, text: string) : boolean {
   //if match, return true
-  for(const phrase in phraseObject){
-    console.log("The match is: " + text.toLowerCase().match(phrase.toLowerCase()))
-    if(text.toLowerCase().match(phrase.toLowerCase()) != null){
+  for(const phrase of phraseObject){
+    const regExPhrase = new RegExp(phrase, "i");
+    if(text.match(regExPhrase) != null){
       console.log("\tMatched Phrase: " + phrase);
       return true;
     }
@@ -102,7 +111,7 @@ function match(phraseObject: any, text: string) : boolean {
 }
 
 function isApplication(title: string) : boolean {
-  return match(applicationPhrases.values(), title);
+  return match(applicationPhrases, title);
 }
 
 /**
@@ -113,7 +122,7 @@ function isApplication(title: string) : boolean {
  * @param text the text to determine if it's new
  */
 function isNewApplication(body: string) : boolean {
-  return match(jobProgressPhrases.justApplied.values(), body);
+  return match(jobProgressPhrases.justApplied, body);
 }
 
 /**
@@ -124,5 +133,5 @@ function isNewApplication(body: string) : boolean {
  * @param text the text to determine if it's new
  */
 function isRejection(body: string) : boolean {
-  return match(jobProgressPhrases.justRejected.values(), body);
+  return match(jobProgressPhrases.justRejected, body);
 }
