@@ -39,14 +39,19 @@ export function parseEmail(message: any) : progressStatus {
   let bodyBase64 : string = "";
   let body : string = "";
 
-  if(message.payload.parts){
+  console.log("Payload Parts " + message.payload.parts);
+  console.log("Payload Body Data: " + message.payload.body.data);
+
+  if(message.payload.parts != undefined){
     URLBase64 = message.payload.parts[0].body.data; // just get the first: one plain text/html
+    bodyBase64 = decodeURIComponent(URLBase64);
   } else {
     URLBase64 = message.payload.body.data; // get the data straight from the payload
+    bodyBase64 = URLBase64;
   }
 
-  bodyBase64 = decodeURIComponent(URLBase64);
-  body = atob(bodyBase64);
+  let decodedMessage = Buffer.from(bodyBase64, 'base64');
+  body = decodedMessage.toString('base64');
 
   console.log(title);
 
@@ -86,7 +91,8 @@ function isOffer(body: string){
 function match(phraseObject: any, text: string) : boolean {
   //if match, return true
   for(const phrase in phraseObject){
-    if(text.toLowerCase().match(phrase.toLowerCase())){
+    console.log("The match is: " + text.toLowerCase().match(phrase.toLowerCase()))
+    if(text.toLowerCase().match(phrase.toLowerCase()) != null){
       console.log("\tMatched Phrase: " + phrase);
       return true;
     }
