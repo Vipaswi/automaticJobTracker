@@ -7,15 +7,24 @@
  * @author Vipaswi Thapa
  */
 
-
 import { applicationPhrases, jobProgressPhrases, interviewPhrases, offerPhrases } from '../Phrases/commonPhrases';
 import {jobTitles} from '../Phrases/jobTitles'
+import {jobTitlePrefixes, jobTitlePostfixes, jobTimeOfYear} from '../Phrases/jobTitleVariations'
 import {USStateAbbreviations} from '../Phrases/locations'
 import { google, GoogleApis } from 'googleapis';
 import base64url from "base64url";
 import ahocorasick from "ahocorasick"
 
 const testing = true;
+
+// Ahocorasick global variables (since they're constants)
+// -> Reduces Ahocorasick FSM creations drastically and cuts costs
+const fsm_jobTitles = new ahocorasick(jobTitles);
+const fsm_USStateAbbreviations = new ahocorasick(USStateAbbreviations);
+
+const prefix = jobTitlePrefixes.join("|");
+const postfix = jobTitlePostfixes.join("|");
+const timeOfYear = jobTimeOfYear.join("|");
 
 export enum progressStatus{
   NULL = "NULL",
@@ -92,6 +101,9 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
     jobLocationFound = jobLocation.length >= 1;
   }
 
+  if(jobTitleFound){
+    jobTitle = extractFullJobTitle(body, jobTitle)
+  }
 
   
   // Go through options by rarity:
@@ -163,9 +175,8 @@ function isRejection(body: string) : boolean {
   return match(jobProgressPhrases.justRejected, body);
 }
 
-function getFirstMatch(phraseObject: any, text: string) : string{
+function getFirstMatch(fsm: ahocorasick, text: string) : string{
   // Create the finite state machine:
-  const fsm = new ahocorasick(phraseObject);
   const matches = fsm.search(text)
 
   // return the first match
@@ -177,7 +188,7 @@ function getFirstMatch(phraseObject: any, text: string) : string{
  * @return the job title
  */
 function getJobTitle(body: string) : string {
-  return getFirstMatch(jobTitles, body);
+  return getFirstMatch(fsm_jobTitles, body);
 }
 
 /**
@@ -185,5 +196,33 @@ function getJobTitle(body: string) : string {
  * @return the job title
  */
 function getLocation(body: string) : string {
-  return getFirstMatch(USStateAbbreviations, body);
+  return getFirstMatch(fsm_USStateAbbreviations, body);
+}
+
+/**
+ * @param body The email body
+ * @param matchedTitle The title found in the email body
+ * @returns The matched title with any prefixes or postfixes, along with the time of year if applicable
+ */
+function extractFullJobTitle(body: string, matchedTitle: string) {
+  const pattern = new RegExp(
+    `(?:(${prefix})\\s+)?(${matchedTitle})(?:\\s+(${postfix})(?:\\s+(${timeOfYear}))?`,
+    "i"
+  );
+
+  const match = body.match(pattern);
+
+  if(match?.[1] != null){
+    matchedTitle = match[1] + " " + matchedTitle;
+  }
+
+  if(match?.[3] != null){
+    matchedTitle = matchedTitle + " " + match[3]; 
+  }
+
+  if(match?.[4] != null){
+    matchedTitle = matchedTitle + " " + match[4];
+  }
+
+  return matchedTitle;
 }
