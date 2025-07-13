@@ -9,8 +9,11 @@
 
 
 import { applicationPhrases, jobProgressPhrases, interviewPhrases, offerPhrases } from '../Phrases/commonPhrases';
+import {jobTitles} from '../Phrases/jobTitles'
+import {USStateAbbreviations} from '../Phrases/locations'
 import { google, GoogleApis } from 'googleapis';
 import base64url from "base64url";
+import ahocorasick from "ahocorasick"
 
 const testing = true;
 
@@ -40,7 +43,7 @@ function printOnFailure(printString: string, result : progressStatus, expected :
 export function parseEmail(message: any, expectedResult: progressStatus) : progressStatus {
 
   // Get the title and body from a message object from Gmail
-  let title: string = message.payload.messageHeaders[2].value;
+  let emailTitle: string = message.payload.messageHeaders[2].value;
 
   let URLBase64 : string = "";
   let bodyBase64 : string = "";
@@ -56,16 +59,40 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
 
   body = base64url.decode(URLBase64);
 
-  console.log(title);
+  // DEBUGGING:
+  console.log(emailTitle);
   console.log(body);
 
-  let isJobApplication = isApplication(title) || isApplication(body);
-
   // Parse data and determine whether it's an application
+  let isJobApplication = isApplication(emailTitle) || isApplication(body);
+
   if(!isJobApplication){
     printOnFailure(body, progressStatus.INTERVIEW, expectedResult);
     return progressStatus.IRRELEVANT;
   }
+
+  // Determine Job Title and Location
+    //TODO: Match job titles by regex to allow for associateship/intern/internship/prefix: entry level etc.
+    //TODO: Find for dates: Fall YYYY, Spring YYYY, Summer YYYY, Winter YYYY
+    // -> alternatively find start date: DDDD
+
+  let jobTitle : string = getJobTitle(emailTitle);
+  let jobLocation : string= getLocation(body);
+
+  let jobTitleFound : boolean = jobTitle.length >= 1;
+  let jobLocationFound : boolean = jobLocation.length >= 1;
+
+  if(!jobTitleFound){
+    jobTitle = getJobTitle(body);
+    jobTitleFound = jobTitle.length >= 1;
+  }
+
+  if(!jobLocationFound){
+    jobLocation = getLocation(body);
+    jobLocationFound = jobLocation.length >= 1;
+  }
+
+
   
   // Go through options by rarity:
   if (isJobApplication && isOffer(body)){
@@ -80,7 +107,7 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
     printOnFailure(body, progressStatus.FAIL, expectedResult);
     return progressStatus.FAIL;
   } 
-  else if (isJobApplication && (isNewApplication(title) || isNewApplication(body))){
+  else if (isJobApplication && (isNewApplication(emailTitle) || isNewApplication(body))){
      printOnFailure(body, progressStatus.NEW, expectedResult);
     return progressStatus.NEW;
   }
@@ -134,4 +161,29 @@ function isNewApplication(body: string) : boolean {
  */
 function isRejection(body: string) : boolean {
   return match(jobProgressPhrases.justRejected, body);
+}
+
+function getFirstMatch(phraseObject: any, text: string) : string{
+  // Create the finite state machine:
+  const fsm = new ahocorasick(phraseObject);
+  const matches = fsm.search(text)
+
+  // return the first match
+  return matches[0][1][0];
+}
+
+/**
+ * @param body The body to get a title from
+ * @return the job title
+ */
+function getJobTitle(body: string) : string {
+  return getFirstMatch(jobTitles, body);
+}
+
+/**
+ * @param body The body to get a title from
+ * @return the job title
+ */
+function getLocation(body: string) : string {
+  return getFirstMatch(USStateAbbreviations, body);
 }
