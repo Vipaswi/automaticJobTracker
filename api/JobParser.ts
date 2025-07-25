@@ -85,23 +85,18 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
     //TODO: Find for dates: Fall YYYY, Spring YYYY, Summer YYYY, Winter YYYY
     // -> alternatively find start date: DDDD
 
-  let jobTitle : string = getJobTitle(emailTitle);
-  let jobLocation : string= getLocation(body);
+  let jobTitle : string | null = getJobTitle(emailTitle);
+  let jobLocation : string | null= getLocation(body);
 
-  let jobTitleFound : boolean = jobTitle.length >= 1;
-  let jobLocationFound : boolean = jobLocation.length >= 1;
-
-  if(!jobTitleFound){
+  if(!jobTitle != null){
     jobTitle = getJobTitle(body);
-    jobTitleFound = jobTitle.length >= 1;
   }
 
-  if(!jobLocationFound){
+  if(!jobLocation != null){
     jobLocation = getLocation(body);
-    jobLocationFound = jobLocation.length >= 1;
   }
 
-  if(jobTitleFound){
+  if(jobTitle != null){
     jobTitle = extractFullJobTitle(body, jobTitle)
   }
 
@@ -175,19 +170,24 @@ function isRejection(body: string) : boolean {
   return match(jobProgressPhrases.justRejected, body);
 }
 
-function getFirstMatch(fsm: ahocorasick, text: string) : string{
+function getFirstMatch(fsm: ahocorasick, text: string) : string | null{
   // Create the finite state machine:
   const matches = fsm.search(text)
-
+  
   // return the first match
-  return matches[0][1][0];
+  if(matches[0] != undefined){
+    return matches[0][1][0];
+  }
+
+
+  return null;
 }
 
 /**
  * @param body The body to get a title from
  * @return the job title
  */
-function getJobTitle(body: string) : string {
+function getJobTitle(body: string) : string | null {
   return getFirstMatch(fsm_jobTitles, body);
 }
 
@@ -195,7 +195,7 @@ function getJobTitle(body: string) : string {
  * @param body The body to get a title from
  * @return the job title
  */
-function getLocation(body: string) : string {
+function getLocation(body: string) : string | null{
   return getFirstMatch(fsm_USStateAbbreviations, body);
 }
 
@@ -206,9 +206,9 @@ function getLocation(body: string) : string {
  */
 function extractFullJobTitle(body: string, matchedTitle: string) {
   const pattern = new RegExp(
-    `(?:(${prefix})\\s+)?(${matchedTitle})(?:\\s+(${postfix})(?:\\s+(${timeOfYear}))?`,
+    `(?:(${prefix})\\s+)?(${matchedTitle})(?:\\s+(${postfix})(?:\\s+(${timeOfYear}))?)?`,
     "i"
-  );
+  );  
 
   const match = body.match(pattern);
 
