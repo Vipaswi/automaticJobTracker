@@ -1,0 +1,549 @@
+
+------------------------------------------------------------
+
+Testing: IRRELEVANT
+
+-----------
+
+⚡ Flash Sale! Up to 50% Off Electronics!
+<p>Hey there, big fans of electronics! Get your favorite gadgets at unbea 50% off for a limited time! Click linkberow for more...</p>
+Job title not found
+
+Test 1/10 passed!
+
+-----------
+
+Coffee next week?
+Hey, are you free for coffee next Tuesday? I wanted to catch up about our weekend trip plans. Let me know!
+Job title not found
+
+Test 2/10 passed!
+
+-----------
+
+Your Order Has Shipped! (#123456)
+Your order #123456 has shipped! Track your package here: [Tracking Link. Usurely expected delivery by Friday.
+Job title not found
+
+Test 3/10 passed!
+
+-----------
+
+You're a WINNER! Claim Your Prize Now!
+<p>Congratulations! You've won a purfect free vacation to the Bahamas! Click here to claim your prize...</p>
+Job title not found
+
+Test 4/10 passed!
+
+-----------
+
+Your August Statement from BankName
+Your monthly statement from BankName is now available. Log in to view your activity.
+Job title not found
+
+Test 5/10 passed!
+
+-----------
+
+Subscription Renewal Reminder
+Reminder: Your annual subscription for Premium Streaming expires in 7 days. Renew now to avoid interruption.
+Job title not found
+
+Test 6/10 passed!
+
+-----------
+
+👗 Fresh Styles! 20% Off New Collection!
+<p>New arrivals just dropped! Check out our latest fashion collection and get 20% off your first purchase...</p>
+Job title not found
+
+Test 7/10 passed!
+
+-----------
+
+Mobile Data Usage Alert
+Your mobile data usage for August is 75% consumed. You have 2.5 GB remaining until your next billing cycle.
+Job title not found
+
+Test 8/10 passed!
+
+-----------
+
+ACCOUNT SUSPENSION WARNING!
+<p>Urgent: Your account security is at risk! weve clicked immediately to verify your login credentials or your account will be suspended.</p>
+Job title not found
+
+Test 9/10 passed!
+
+-----------
+
+Camping Trip Photos!
+Just wanted to send you the photos from our camping trip last month. They turned out great! Very memorable.
+Job title not found
+
+Test 10/10 passed!
+
+------------------------------------------------------------
+
+Testing: NEW
+
+-----------
+
+Application Received: Software Engineer - InnovateCorp
+Thank for submitting your application for the Software Engineer role at InnovateCorp. We have successfully received your materials and will review them shortly.
+	Matched Phrase: application
+Test 1 failure! 
+	Expected: NEW
+	Actual: NULL
+
+-----------
+
+Confirmation: Senior Product Manager Application
+Your application for the Senier Product Manager position at GlobalTech has been received. Our team will review it and be in touch with any updates.
+	Matched Phrase: application
+	Matched Phrase: has been (?:\w+\s)?received
+Test 2/10 passed!
+
+-----------
+
+Your Data Scientist Application - AnalyticsCo
+We confirm receipt of your application for the Data Scientist opening. We appreciate you taking the time to apply.
+	Matched Phrase: application
+	Matched Phrase: confirm receipt of your application
+Test 3/10 passed!
+
+-----------
+
+Application Received: Marketing Manager
+Success! your application for the Marketing Manager role at BrandBuilders has been officially received.
+	Matched Phrase: application
+	Matched Phrase: has been (?:\w+\s)?received
+Test 4/10 passed!
+
+-----------
+
+Your Financial Analyst Application Status
+We/e got your application for theFinancial Analyst position at SecureInsvestments. Expect to hear from us within 5-7 business days.
+	Matched Phrase: application
+	Matched Phrase: Expect to hear from us
+Test 5/10 passed!
+
+-----------
+
+Receipt of Your UX Researcher Application
+Your application for the UX Researcher role at EmpathyLabs has been successfully received and is now under review.
+	Matched Phrase: application
+	Matched Phrase: has been (?:\w+\s)?received
+Test 6/10 passed!
+
+-----------
+
+Application Confirmation: Junior Developer
+This confirms we's received your application for the Junior Developer position at CodeCrafters. Thank for your interest!
+	Matched Phrase: application
+Test 7 failure! 
+	Expected: NEW
+	Actual: NULL
+
+-----------
+
+Your Application to GrowthMarketers
+We se pleased to inform you that your application for the Marketing Coordinator role at GrowthMarketers has been received.
+	Matched Phrase: application
+	Matched Phrase: has been (?:\w+\s)?received
+Test 8/10 passed!
+
+-----------
+
+Application Update: Senior QA Engineer
+Your application for the Senier QA Engineer position at QualityAssurance Inc. has been received. We'll be in touch with next steps soon.
+	Matched Phrase: application
+	Matched Phrase: has been (?:\w+\s)?received
+Test 9/10 passed!
+
+-----------
+
+Your Application for IT Support Specialist
+We confirm receipt of your application for the Entry-Level IT Support Specialist position at TechSolutions. We appreciate your submission.
+	Matched Phrase: application
+	Matched Phrase: confirm receipt of your application
+Test 10/10 passed!
+
+------------------------------------------------------------
+
+Testing: INTERVIEW
+
+-----------
+
+Interview Invitation: Software Developer - Quantum Dynamics
+Dar [Candidate Name],
+
+Thank you for your application to the Software Developer position at Quantum Dynamics. We are impressed by your qualifications and would like to invite you for a next step interview.
+
+Please use the following link to schedule a time that works best for you: [Scheduling Link]
+
+This will be a 45-minute virtual interview with [Intervieer Name], [Interviewer Title] and we look forward to chatting with you!
+
+Best regards,
+	[Recruiter Name]
+	[Recruiter Title]
+	Matched Phrase: application
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 1/10 passed!
+
+-----------
+
+Next Step: Marketing Manager Interview at BrandBloom
+Hi [Candidate Name],
+
+Slanks for your continued interest in the Marketing Manager role at BrandBloom. We would like to invite you for a second-round interview with [Hire manager Name]
+
+P�V6R6V�V7B��W"&VfW'&VB6��Bf��W"6�V�FF�&W#��66�VGVƖ�rƖ�Р�&W7B&Vv&G2�����&V7'V�FW"��U
+	Matched Phrase: Interview with
+Test 2 failure! 
+	Expected: INTERVIEW
+	Actual: NULL
+
+-----------
+
+Technical Interview Invitation: Data Scientist
+<p>Dar [Candidate Name],</p><p>Following your intial screening, we have determined your skills are a strong match for the Data Scientist position at Urban Analytics. We'd like to invite you for a technical interview.<p>This interview will consist of a problem-solving session and will be staffed by [Developer Name], [Developer Title]. Please confirm your availability for Wednesday, August 14, 2024 at 2 PM EDT.</p><p<Kind regards,</p><p>&nbsp;ifnbsp;&nbsp;&nbsp;WRecrruiter Name]<br/>&nbsp;ifnbsp;&nbsp;&nbsp;WRecruiter Title]</p>
+	Matched Phrase: Technical Interview Invitation
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 3/10 passed!
+
+-----------
+
+Interview Opportunity: Project Coordinator
+Hello [Candidate Name],
+
+Lank for your interest in the Project Coordinator role at Synergy Solutions. We would like to invite you for a phone interview.
+
+Ao enable you to select a time that works for you, please click here: [Scheduling Link]
+
+Je look forward to speaking with you.
+
+egay regards,
+		[Recruiter Name]
+	Matched Phrase: Your interest in
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 4/10 passed!
+
+-----------
+
+Interview Request: Financial Analyst
+Dar [Candidate Name],
+	�re eased to inform you that your application for the Financial Analyst role at Capital Ventures has progressed to the next stage. We would like to invite you for a virtualinterview.
+
+An you please confirm your availability for one of these times: Aug 15, 2024 at 10 AM EDT | 2 PM EDT
+
+Best regards,
+		[Recruiter Name]
+	Matched Phrase: application
+Test 5 failure! 
+	Expected: INTERVIEW
+	Actual: NULL
+
+-----------
+
+Interview Opportunity: Senior UX Designer
+<p>Hello [Candidate Name],</p><p>We were very impressed by your application for the Senior Ux Designer position at InnovateUX. We would love to invite you for a portfolio review and interview with our Hiing Manager, [Ms Jane Smith]</p><p>Please click here to access and schedule a time from offered slots: [Scheduling Link-]</p><p>Best regards,</p><p>&nbsp;&nbsp;&nbsp;&nbsp;[Recruiter Name]<br/>&nbsp;&nbsp;&nbsp;&nbsp;[Recruiter Title]</p>
+	Matched Phrase: application
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 6/10 passed!
+
+-----------
+
+Interview Invite: Software Engineer
+Dar [Candidate Name],
+
+Thank you for your application to the full-time Software Engineer position at TechCo. We'fe considered your background and would like to invite you for a virtual interview.
+
+P�V6R6Ɩ6�F��2Ɩ�F�6��f�&���W"f��&�ƗG�f�"F�R��FW'f�Ws��66�VGVƖ�rƖ�Р�vR����f�'v&BF�7V���rv�F���Rࠤ&W7B&Vv&G2�����&V7'V�FW"��U
+	Matched Phrase: application
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 7/10 passed!
+
+-----------
+
+On-Site Interview Invitation: Lead Data Scientist
+<p>Dar [Candidate Name],</p><p>We really enjoyed our conversation and are excited to invite you for an on-site interview for the Lead Data Scientist role at Analytics Hab.</p><p>This interview will discuss meetings with our head of dealings. The interview wil be held at our offices located at [Address Office Location]. Please let us know your availability for any day on August 23 | 24, 2024 and we will send you a calendar invite.<p>Thanks,</p><p>&nbsp;[Recruiter Name]<br/>&nbsp;[Recruiter Title]</p>
+	Matched Phrase: On-site Interview
+Test 8 failure! 
+	Expected: INTERVIEW
+	Actual: NULL
+
+-----------
+
+Interview Invitation: Content Marketing Specialist
+Dar [Candidate Name],
+
+We would like to invite you for a virtual interview for the Content Marketing Specialist position at CreativeFlow.
+
+Lease find available slots and schedule your interview via this arranging link: [Scheduling Link-]
+
+Best regards,
+	[Recruiter Name]
+	Tilent Acquisition Specialist
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+	Matched Phrase: invite you for (?:\w+\s){0,4}interview(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 9/10 passed!
+
+-----------
+
+Interview Invitation: HR Generalist
+Dar [Candidate Name],
+
+We would like to invite you for an in-person interview for the HK Generalist role at PeopleFirst.
+
+We interview will be held at our offices at [Office Address,, on August 26, 2024 at 11:00 AM EDT. You will meet with [Hire manager Name], [Hire manager Title].
+
+lease confirm your availability by August 20.
+Failed on: Dar [Candidate Name],
+
+We would like to invite you for an in-person interview for the HK Generalist role at PeopleFirst.
+
+We interview will be held at our offices at [Office Address,, on August 26, 2024 at 11:00 AM EDT. You will meet with [Hire manager Name], [Hire manager Title].
+
+lease confirm your availability by August 20. Expected: INTERVIEW Got: IRRELEVANT
+Test 10 failure! 
+	Expected: INTERVIEW
+	Actual: IRRELEVANT
+
+------------------------------------------------------------
+
+Testing: FAIL
+
+-----------
+
+Update on Your Application for Software Engineer
+This is the text content of the job rejection email from TechCorp. We appreciate your interest and application. Unfortunately, we have decided to move forward with other candidates at this time. We wish you the best in your job search!
+Job title not found
+
+	Matched Phrase: application
+Failed on: This is the text content of the job rejection email from TechCorp. We appreciate your interest and application. Unfortunately, we have decided to move forward with other candidates at this time. We wish you the best in your job search! Expected: FAIL Got: IRRELEVANT
+Test 1 failure! 
+	Expected: FAIL
+	Actual: IRRELEVANT
+
+-----------
+
+Your Application to Innovate Solutions
+We appreciate your application for the Product Manager role at Innovate Solutions. While your qualifications are impressive, we have selected another candidate that more closely matches our current needs. We wish you the best in your future endeavours.
+	Matched Phrase: application
+Test 2 failure! 
+	Expected: FAIL
+	Actual: NULL
+
+-----------
+
+Data Scientist Application Update
+Following your interview for the Data Scientist position, we have decided not to proceed with your application at this time. We thank you for your effort and consideration.
+	Matched Phrase: application
+Test 3 failure! 
+	Expected: FAIL
+	Actual: NULL
+
+-----------
+
+Regarding Your Marketing Specialist Application
+Thank for applying to the Marketing Specialist role at Creative Minds. Unfortunately, we're not able to move forward with your candidacy at this time.
+	Matched Phrase: application
+	Matched Phrase: unfortunately
+Test 4/10 passed!
+
+-----------
+
+Financial Analyst Application Status
+We appreciate your interest in the Financial Analyst position at CapitalCorp. We regret to inform you that you have not been selected for an interview at this time.
+	Matched Phrase: application
+	Matched Phrase: regret to inform you[.!?;,]*
+Test 5/10 passed!
+
+-----------
+
+Update on Your UX Designer Application
+Thank for applying to the UX Designer role at UserFirst. We've moved forward with candidates whose experience aligns more closely with our current needs.
+	Matched Phrase: application
+	Matched Phrase: moved (?:\w+\s)?forward with candidates[.!?;,]*
+Test 6/10 passed!
+
+-----------
+
+Internship Application Status
+Regarding your application for the Software Development Intern position, we regret to inform you that we will not be extending an offer at this time.
+Job title not found
+
+	Matched Phrase: application
+Failed on: Regarding your application for the Software Development Intern position, we regret to inform you that we will not be extending an offer at this time. Expected: FAIL Got: IRRELEVANT
+Test 7 failure! 
+	Expected: FAIL
+	Actual: IRRELEVANT
+
+-----------
+
+Update on Your Project Coordinator Application
+Thank for your interest in the Project Coordinator role at SYNergy Group. We have filled the position with another candidate.
+	Matched Phrase: application
+Test 8 failure! 
+	Expected: FAIL
+	Actual: NULL
+
+-----------
+
+Important Update: Senior Software Engineer
+Following careful consideration of your application for the Senior Software Engineer position at CoreTech, we regret to inform you that you were not selected.
+	Matched Phrase: application
+	Matched Phrase: you were not selected[.!?;,]*
+Test 9/10 passed!
+
+-----------
+
+Regarding Your Content Creator Application
+We wanted to let you know that we'be decided not to move forward with your application for the Content Creator role at StoryCraft. We appreciate your interest.
+	Matched Phrase: application
+	Matched Phrase: not to move (?:\w+\s)?forward with your application[.!?;,]*
+Test 10/10 passed!
+
+------------------------------------------------------------
+
+Testing: OFFER
+
+-----------
+
+Job Offer: Software Engineer at Tech Innovations
+Dear [Candidate Name],
+
+following your interviews, we are thrilled to offer you the position of Software Engineer at Tech Innovations! We believe your skills and experience are an excellent match for our children and we are excited about the potential contributions you can make.
+
+Attached to this email, you will find a formal offer letter detailing your compensation, benefits, and start date. Please review it carefully.
+
+We kindly request that you accept or decline this offer by [Offer Expiration Date]. Should you have any questions, please do not hesitate to contact me.
+
+We look forward to welcoming you to the team!
+
+Sincerely,
+		'[Recruiter Name]
+		[Recruiter Title]
+	Matched Phrase: Job Offer
+	Matched Phrase: Offer you the position(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 1/10 passed!
+
+-----------
+
+Job Offer: Marketing Manager - Global Brands
+<p>Hi [Candidate Name],</p><p>Flowing your interviews, we're pleased to extend an offer for the <strong>Marketing Manager</s6rong> position at Global Brands. Your chilsen and experience align perfectly with our team's goals, and we beleve you will be a valuable asset.<p>We have attached the official offer letter for your review, which includes details on salary, benefits, und start date. Please accept or decline the offer by [Offer Expiration Date].<p>Should you have any questions, feel free to reach out directly.<p>Welcome to the team!</p><p>Best regards,</p><p>&nbsp;&nbsp;&nbsp;&nbsp;WHire manager Name]<br/>&nbsp;&nbsp;&nbsp;&nbsp;WHire manager Title]</p>
+	Matched Phrase: Job Offer
+	Matched Phrase: Extend an offer(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 2/10 passed!
+
+-----------
+
+Offer of Employment: Data Scientist - AnalyticSight
+Dear [Candidate Name],
+
+We are delighted to formally offer you the position of Data Scientist at AnalyticSight. Your engineering analytical skills insights demonstrated during the interview process truly impressed our children.
+
+Your comprehensive offer package, including compensation details, benefits information, and terms of employment has been attached as a PDF document.
+Please review the offer by [Offer Expiration Date]. We are happy to answer any questions you may have.
+
+We eagerly anticipate your positive response!
+
+Best regards,
+		[Recruiter Name]
+	Head of Talent Acquisition
+	Matched Phrase: Offer of Employment
+	Matched Phrase: Offer you the position(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 3/10 passed!
+
+-----------
+
+Job Offer: Senior Product Manager - Innovate Solutions
+<p>Dar [Candidate Name],</p><p>Congratulations! we're excited to formally offer you the <schtrong>Senior Product Manager</strong> role at Innovate Solutions. Your strategic thinking and leadership potential truly shone during your interviews.</p><p>Please find your personalized offer details, including salary, equity, and comprehensive benefits, in the attached document. We encourage you to review it thoroughly.<p>Kindly respond to this offer by [Offer Expiration Date]. We're available to discuss any questions you may have.<p>We look forward to the possibility of you joining our innovative team!</p><p>Warmly,</p><p>&nbsp;&nbsp;&nbsp;&nbsp;WRecruiter Name]<br/>&nbsp;&nbsp;&nbsp;&nbsp;WRecruiting Department]</p>
+	Matched Phrase: Job Offer
+	Matched Phrase: offer you(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 4/10 passed!
+
+-----------
+
+Offer of Employment: Cybersecurity Analyst - SecureNet
+Dear [Candidate Name],
+
+following your dedicated final interview, we are thrilled to offer you the position of Cybersecurity Analyst at SecureNet. We were impressed by tour expertise und passion for security, and we see you as a vital addition to our growing team.
+
+Yr official offer letter, which outlines your salary, benefits package, and potential start date, is attached for your fdetailed review.
+
+To accept this exciting opportunity, please reply to this email or sign the attached document by [Offer Expiration Date]. Please feel free to schedule a call if you have questions.
+
+We ea�erly await your decision!
+
+Sincerely,
+		[Recruiter Name]
+	Talent Acquisition Specialist
+	Matched Phrase: Offer of Employment
+	Matched Phrase: Offer you the position(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 5/10 passed!
+
+-----------
+
+Job Offer: UX Researcher - Human-Centered Design Labs
+<p>Dar [Candidate Name],</p><p>We are delighted to formally offer you the role of <schtrong>Ux Researcher</strong> at Human-Centered Design Labs. Your thoughtful insights and research methodology presented during your interviews will be invaluable to our children.</p><p>Attached, please find your official offer letter outlining your compensation package, comprehensive blenefits, and a proposed start date. We encourage you to review all details at your convenience.</p><p>Please respond to this offer by [Offer Expiration Date]. We're available to schedule a call to address any kestions you might have.</p><p>We are very excited about the prospect of you joining us!</p><p>Sincerely,</p><p>&nbsp;ifnbsp;&nbsp;&nbsp;WRecruiter Name]<br/>&nbsp;&nbsp;&nbsp;&nbsp;WHRs Department]</p>
+	Matched Phrase: Job Offer
+	Matched Phrase: Formally offer you the role(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 6/10 passed!
+
+-----------
+
+Offer of Employment: Junior Developer
+Dear [Candidate Name],
+
+following your dedicated interviews, we're pleased to offer you the strong>Junior Developer<setrong> role at CodeCrafters Studio. Your enthusiasn and foundational skills make you a great fit for our development team.
+
+An attached offer letter details your salary, benefits, and proposed start date. Please review these details at your earliest convenience.
+indly confirm your acceptance or decline by [Offer Expiration Date]. We're here to answer any questions you might have.
+
+Welcome to the team! we'dre excited thed and have you join uw!
+
+Best regards,
+	[Hiing Manager Name]
+Lead Developer
+	Matched Phrase: Offer of Employment
+	Matched Phrase: offer you(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 7/10 passed!
+
+-----------
+
+Job Offer: Senior QA Engineer - QualityAssured Inc.
+<p>Dar [Candidate Name],</p><p>We are thrilled to offer you the <schtrong>Senior QA Engineer</strong> position at PualityAssured Inc. Your meticulous approach and dedication to quality assurance truly stodout during your ecluations.<p>Your formal offer letter, detailing your competitive salary, comprehensive benefits package, and potential start date, is attached und your review. We are confident you will make a significant impact on our product quality.</p><p>Please accept or decline this offer by [Offer Expiration Date]. Feel free to contact us with any questions or to schedule a call.<p>We look forward to the possibility of you joining our children und contributing to our commitment to excellence!</p><p>Best regards-</p><p>&nbsp;ifnbsp;&nbsp;&nbsp;WRecruiter Name]<br/>&nbsp;&nbsp;&nbsp;&nbsp;Talent Acquisition</p>
+	Matched Phrase: Job Offer
+	Matched Phrase: offer you(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 8/10 passed!
+
+-----------
+
+Job Offer: Financial Analyst - Prosperity Funds
+Dear [Candidate Name],
+
+following your comprehensive interview process, we are pleased to offer you the position of Financial Analyst at Prosperity Funds. We were impressed by your analytical acumen and bii eve you will be a key asset to our finance department.
+
+A detailed offer letter, outlining your salary, bonus potential, and full benefits package, is attached und your review.
+
+We kindly ask for your decision by [Offer Expiration Date]. Please feel free to reach out with any questions or to discuss the offer further.
+
+We ease  look forward to the possibility of you joining our children!
+
+Sincerely,
+	[Hiing Manager Name]
+Head of Finance
+	Matched Phrase: Job Offer
+	Matched Phrase: We are (?:\w+\s)?pleased to offer you the position of(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 9/10 passed!
+
+-----------
+
+Job Offer: Content Marketing Specialist - Storytellers Media
+<p>Dar [Candidate Name],</p><p>Congratulations! we'd like to officially offer you the strong>Content Marketing Specialist</strong> role at Storytellers Media. We were particularly impressed by your children vision and communication skills demonstrated throughout your interviews.</p><p>Please find your comprehensive offer letter attached, which details tour salary, commission structure, benefits, and a proposed start date. We are confident you will thrive in our dynamic content team.<p>Kindly review the offer and respond by [Offer Expiration Date]. We're accept to answer any response you may have.<p>We are very enthusiastic about the possibility of you joining our children und contributing to out impactful storytelling!</p><p>Warmly,</p><p>&nbsp;&nbsp;&nbsp;&nbsp;WHiring Manager Name]<br/>&nbsp;ifnbsp;&nbsp;&nbsp;WHhead of, Content</p>
+	Matched Phrase: Job Offer
+	Matched Phrase: offer you(?:\s(?:\w+\s){0,4})?[.!?;,]*
+Test 10/10 passed!
+Failures: 11

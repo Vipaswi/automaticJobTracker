@@ -37,7 +37,7 @@ export enum progressStatus{
 
 function printOnFailure(printString: string, result : progressStatus, expected : progressStatus){
   if(result != expected && testing){
-    console.log("Failed on: " + printString);
+    console.log("Failed on: " + printString + " Expected: " + expected + " Got: " + result); 
   }
 }
 
@@ -55,7 +55,6 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
   let emailTitle: string = message.payload.messageHeaders[2].value;
 
   let URLBase64 : string = "";
-  let bodyBase64 : string = "";
   let body : string = "";
 
   if(message.payload.parts != undefined){
@@ -71,35 +70,36 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
   // DEBUGGING:
   console.log(emailTitle);
   console.log(body);
-
-  // Parse data and determine whether it's an application
-  let isJobApplication = isApplication(emailTitle) || isApplication(body);
-
-  if(!isJobApplication){
-    printOnFailure(body, progressStatus.INTERVIEW, expectedResult);
-    return progressStatus.IRRELEVANT;
-  }
-
+  
   // Determine Job Title and Location
-    //TODO: Match job titles by regex to allow for associateship/intern/internship/prefix: entry level etc.
-    //TODO: Find for dates: Fall YYYY, Spring YYYY, Summer YYYY, Winter YYYY
-    // -> alternatively find start date: DDDD
-
   let jobTitle : string | null = getJobTitle(emailTitle);
   let jobLocation : string | null= getLocation(body);
-
+  
   if(!jobTitle != null){
     jobTitle = getJobTitle(body);
   }
-
+  
   if(!jobLocation != null){
     jobLocation = getLocation(body);
   }
-
+  
   if(jobTitle != null){
     jobTitle = extractFullJobTitle(body, jobTitle)
   }
 
+  // Irrelevant application checks:
+  if(testing && jobTitle == null){
+    console.log("Job title not found\n");
+
+  }
+  
+  // Parse data and determine whether it's an application
+  let isJobApplication = (isApplication(emailTitle) || isApplication(body)) && jobTitle != null;
+
+  if(!isJobApplication){
+    printOnFailure(body, progressStatus.IRRELEVANT, expectedResult);
+    return progressStatus.IRRELEVANT;
+  }
   
   // Go through options by rarity:
   if (isJobApplication && isOffer(body)){
@@ -115,7 +115,7 @@ export function parseEmail(message: any, expectedResult: progressStatus) : progr
     return progressStatus.FAIL;
   } 
   else if (isJobApplication && (isNewApplication(emailTitle) || isNewApplication(body))){
-     printOnFailure(body, progressStatus.NEW, expectedResult);
+    printOnFailure(body, progressStatus.NEW, expectedResult);
     return progressStatus.NEW;
   }
 
@@ -144,8 +144,8 @@ function match(phraseObject: any, text: string) : boolean {
   return false;
 }
 
-function isApplication(title: string) : boolean {
-  return match(applicationPhrases, title);
+function isApplication(text: string) : boolean {
+  return match(applicationPhrases, text);
 }
 
 /**

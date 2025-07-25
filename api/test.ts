@@ -4,6 +4,8 @@ import { GoogleConfigurable } from "googleapis/build/src/apis/abusiveexperiencer
 import { parseEmail, progressStatus } from "./JobParser"
 import base64url from "base64url";
 
+let failures = 0;
+
 function loop_over(loopArray: Array<any>, expectedResult: progressStatus){
   console.log("\n------------------------------------------------------------\n")
   console.log("Testing: " + expectedResult.toString());
@@ -15,6 +17,7 @@ function loop_over(loopArray: Array<any>, expectedResult: progressStatus){
     result = parseEmail(str, expectedResult);
     if(result != expectedResult){
       console.log("Test " + (i + 1) + " failure! \n\tExpected: " + expectedResult.toString() + "\n\tActual: " + result.toString());
+      failures++;
     } else {
       console.log("Test " + (i + 1) + "/" + loopArray.length  +" passed!");
     }
@@ -22,11 +25,13 @@ function loop_over(loopArray: Array<any>, expectedResult: progressStatus){
 }
 
 const test = () => {
+  failures = 0;
   loop_over(sampleIrrelevantEmails, progressStatus.IRRELEVANT);
   loop_over(sampleMessageEmailApplications, progressStatus.NEW);
   loop_over(sampleInterviewEmails, progressStatus.INTERVIEW);
   loop_over(sampleMessageEmailFailures, progressStatus.FAIL);
   loop_over(sampleOfferEmails, progressStatus.OFFER);
+  console.log("Failures: " + failures);
 }
 
 test();

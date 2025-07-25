@@ -1,3 +1,6 @@
+/**
+ * @todo Track applications which were wrong (changed by the user) and flag them in temporary storage to be added in the future
+ */
 const express = require("express");
 const { google } = require('googleapis');
 
