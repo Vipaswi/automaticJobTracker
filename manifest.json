@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Automatic Job Tracker",
   "version": "1",
   "description": "An extension that automatically tracks job status based on your work email, categorizing progress into five categories.",
@@ -8,13 +8,15 @@
     "default_popup": "popup.html",
     "default_icon": "icon.png"
   },
+  "oauth2": {
+    "client_id": "1013227706769-sin9ematt7gl151s6vdp2viembcui58k.apps.googleusercontent.com",
+    "scopes":["https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.modify",
+    "https://www.googleapis.com/auth/cloud-platform"]
+  },
   "permissions": [
-    "tabs",
-    "bookmarks",
-    "storage"
-  ],
-  "optional_permissions": [
-    "unlimitedStorage"
+    "storage",
+    "identity"
   ],
   "host_permissions": [
     "https://www.blogger.com/"
