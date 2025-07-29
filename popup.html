@@ -2,6 +2,7 @@
 <head>
   <title>Automatic Job Tracker</title>
   <script type="text/javascript" src="oauth.js"></script>
+  <script type="module" src="./src/popup.tsx"></script>
   <meta name="google-signin-client_id" content="1013227706769-sin9ematt7gl151s6vdp2viembcui58k.apps.googleusercontent.com">
 </head>
 <body className="informationContainer">
@@ -9,8 +10,19 @@
     <p>Track your job responses automatically!</p>
   </div>
 
-  <button class="g-signin2" id="signIn"></button>
-  <div className="informationBox"></div>
+  <button class="g-signin2" id="signIn">Sign In</button>
+  <img className="CurrentStatus">
+    <div>
+      No new emails parsed.
+    </div>
+
+    <div id="root"></div>
+
+    <!--Link to spreadsheets created for the user; requires more scopes for google-->
+    <a href="">
+      Check Progress
+    </a>
+  </div>
     
 </body>
 </html>
