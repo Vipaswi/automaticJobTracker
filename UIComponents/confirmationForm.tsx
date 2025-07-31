@@ -1,7 +1,7 @@
-import { USStateAbbreviations } from '../Phrases/locations.ts';
+import { USStateAbbreviations } from '../Phrases/locations';
 import { progressStatus } from '.';
-import React, { useState, useEffect, Button } from 'react';
-import { locationDropDown } from './locationDropDown';
+import React, { useState, useEffect} from 'react';
+import { LocationDropDown } from './LocationDropDown.tsx';
 
 export const ConfirmationForm = () => {
   const [companyName, setCompanyName] = useState("type something");
@@ -27,15 +27,15 @@ export const ConfirmationForm = () => {
   // Fetches information that includes:
   //    The parsed company name, job title, location, progress, and encrypted email
   useEffect(() => {
-  
+    console.log(USStateAbbreviations);
   }, [])
 
   return (
     <div className="ConfirmationForm">
-    <button onClick={goBackwards}/>
+      <button onClick={goBackwards}/>
       <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)}/>
       <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)}/>
-      <locationDropDown location={location} handleSelect={handleLocationSelect}/>
+      <LocationDropDown location={location} handleSelect={handleLocationSelect}/>
       <button onClick={goForwards}/>
     </div>
   )
