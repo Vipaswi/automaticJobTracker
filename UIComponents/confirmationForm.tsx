@@ -34,6 +34,7 @@ export const ConfirmationForm = () => {
   //    The parsed company name, job title, location, progress, and encrypted email
   useEffect(() => {
     console.log(USStateAbbreviations);
+    //TODO: Fetch data from backend api on the user, and set state variables
   }, [])
   
   return (
