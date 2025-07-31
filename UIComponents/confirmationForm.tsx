@@ -1,6 +1,6 @@
 import { USStateAbbreviations } from '../Phrases/locations';
 import { progressStatus } from '.';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { LocationDropDown } from './LocationDropDown.tsx';
 
 export const ConfirmationForm = () => {
@@ -32,11 +32,11 @@ export const ConfirmationForm = () => {
 
   return (
     <div className="ConfirmationForm">
-      <button onClick={goBackwards}/>
-      <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)}/>
-      <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)}/>
-      <LocationDropDown location={location} handleSelect={handleLocationSelect}/>
-      <button onClick={goForwards}/>
+      <button onClick={goBackwards} />
+      <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
+      <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
+      <LocationDropDown location={location} handleSelect={handleLocationSelect} />
+      <button onClick={goForwards} />
     </div>
   )
 }
