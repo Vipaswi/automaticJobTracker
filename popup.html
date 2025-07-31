@@ -1,30 +1,14 @@
 <html>
 <head>
   <title>Automatic Job Tracker</title>
-  <script type="module" src="./src/oauth.js"></script>
   <script type="module" src="./src/popup.tsx"></script>
-
+  <link rel="stylesheet" href="./UIComponents/components.css">
+  <link rel="stylesheet" href="styles.css">
+  
   <meta name="google-signin-client_id" content="1013227706769-sin9ematt7gl151s6vdp2viembcui58k.apps.googleusercontent.com">
 </head>
 <body class="informationContainer">
-  <div class="informationBox">
-    <p>Track your job responses automatically!</p>
+  <div id="root">
   </div>
-
-  <button class="g-signin2" id="signIn">Sign In</button>
-  <img class="CurrentStatus">
-    <div>
-      No new emails parsed. It's working.
-    </div>
-
-    <div id="root">
-    </div>
-
-    <!--Link to spreadsheets created for the user; requires more scopes for google-->
-    <a href="">
-      Check Progress
-    </a>
-  </div>
-    
 </body>
 </html>

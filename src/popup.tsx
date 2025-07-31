@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import { confirmationForm } from '../UIComponents/confirmationForm.tsx';
-import { ConfirmationForm } from '../UIComponents/ConfirmationForm';
+import { Extension } from '../UIComponents/extension';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -16,7 +15,7 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
-      <ConfirmationForm />
+      <Extension />
     </React.StrictMode>
   );
 } else {

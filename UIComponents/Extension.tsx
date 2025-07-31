@@ -1,20 +1,25 @@
-window.onload = function () {
+import {useState, useEffect, useRef} from 'react'
+import { ConfirmationForm } from './confirmationForm';
 
-  // If we have a token, persist it through the client and show current status
+export const Extension = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const signInButton = useRef();
 
-  // Otherwise, show the signIn button:
-  document.getElementById('signIn').addEventListener('click', function () {
+  function logIn () {
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
 
       if (chrome.runtime.lastError || !token) {
         console.error('Auth Error:', chrome.runtime.lastError);
         return;
-      }
+      } 
+
+      setLoggedIn(true);
 
        // OAuth2 gmail token
       console.log('Gmail Token:', token);
-      document.getElementById('signIn').setAttribute('visibility', 'false');
-      document.getElementById('i')
+
+      // Storage:
+      //chrome.storage.local.set({oauthtoken: token});
 
       // send token to backend (not implemented yet)
       fetch('http://localhost:8080', {
@@ -33,5 +38,14 @@ window.onload = function () {
           console.error('Backend auth failed:', err);
         });
     });
-  });
-};
+  }
+
+  // TODO: if we have the token, skip sign in and log in for the user.
+  return <>
+    {!loggedIn ? 
+    <button class="g-signin2" id="signIn" onClick={logIn}>Sign In</button> 
+    : 
+      <ConfirmationForm/>
+    }
+  </>
+}
