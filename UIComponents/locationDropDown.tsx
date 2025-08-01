@@ -15,7 +15,7 @@ export const LocationDropDown: React.FC<Props> = (props: Props) => {
         <button onClick={() => (setDropDownOpen(!dropDownOpen))}>{props.location}</button> {/**Changed by handleSelect method*/}
       </div>
       {dropDownOpen ? (
-        <div className="locationDropDown">
+        <div className="relative top-0 left-0 overflow-y-scroll grid-cols-1 min-w-sm">
           {USStateAbbreviations.map((text) => (
             <button key={text} onClick={() => {
               props.handleSelect(text);

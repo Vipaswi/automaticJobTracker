@@ -43,7 +43,7 @@ export const ConfirmationForm = () => {
         <button onClick={goBackwards} >{"<"}</button>
         <div className="mainForm">
           <Collapsible emailTitle={"this is the email title"}> 
-            <p>This is the long aah email, minus any pictures :p</p>
+            <p className="w-full max-w-sm text-wrap max-h-full">This is the long aaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddh email, minus any pictures :p</p>
           </Collapsible>
           <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
           <input type="text" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
