@@ -1,12 +1,13 @@
 import {useState, useEffect, useRef} from 'react'
-import { ConfirmationForm } from './confirmationForm';
+import { ConfirmationForm } from './ConfirmationForm';
+import React from 'react';
 
 export const Extension = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const signInButton = useRef();
+  const signInButton = useRef(null);
 
   function logIn () {
-    chrome.identity.getAuthToken({ interactive: true }, function (token) {
+    chrome.identity.getAuthToken({ interactive: true }, function (token: any) {
 
       if (chrome.runtime.lastError || !token) {
         console.error('Auth Error:', chrome.runtime.lastError);
@@ -43,7 +44,7 @@ export const Extension = () => {
   // TODO: if we have the token, skip sign in and log in for the user.
   return <>
     {!loggedIn ? 
-    <button class="g-signin2" id="signIn" onClick={logIn}>Sign In</button> 
+    <button className="g-signin2" id="signIn" onClick={logIn}>Sign In</button> 
     : 
       <ConfirmationForm/>
     }

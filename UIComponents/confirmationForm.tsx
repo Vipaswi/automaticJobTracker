@@ -1,7 +1,7 @@
 import { USStateAbbreviations } from '../Phrases/locations';
-import { progressStatus } from '.';
+import { progressStatus } from '../progressStatus';
 import React, { useState, useEffect } from 'react';
-import { LocationDropDown } from './LocationDropDown.tsx';
+import { LocationDropDown } from './LocationDropDown';
 import { Collapsible } from './Collapsible';
 
 export const ConfirmationForm = () => {
@@ -15,7 +15,7 @@ export const ConfirmationForm = () => {
 
   const [emailIndex, setEmailIndex] = useState(0);
 
-  const handleLocationSelect = (text) => {
+  const handleLocationSelect = (text: string) => {
     setLocation(text)
   }
 
@@ -42,8 +42,7 @@ export const ConfirmationForm = () => {
       <div className="formArray">
         <button onClick={goBackwards} >{"<"}</button>
         <div className="mainForm">
-          <Collapsible> 
-            <h4>emailTitle</h4>
+          <Collapsible emailTitle={"this is the email title"}> 
             <p>This is the long aah email, minus any pictures :p</p>
           </Collapsible>
           <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />

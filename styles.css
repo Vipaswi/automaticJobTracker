@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 
 /* Existing styles - ensuring they don't conflict */
 .informationContainer{

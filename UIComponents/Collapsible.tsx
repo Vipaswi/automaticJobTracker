@@ -1,8 +1,14 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react';
+import React from 'react';
 
-export const Collapsible = (props) => {
+interface Props {
+  children: React.ReactNode;
+  emailTitle: string;
+}
+
+export const Collapsible = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const contentRef = useRef(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState("0px");
 
   useEffect(() => {
@@ -13,12 +19,15 @@ export const Collapsible = (props) => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(!isOpen)}>
-        toggle
-      </button>
+      <div className="flex justify-between items-center">
+        {props.emailTitle}
+        <button className="border-1 rounded-e-sm border-amber-50 mr-2 mt-2 mb-2" onClick={() => setIsOpen(!isOpen)}>
+          <img src="/assets/downarrow.png" alt="toggle" />
+        </button>
+      </div>
 
-      <div style={{height: height}} className="contentParent">
-        <div ref={contentRef} className="collapsible-content">
+      <div style={{ height }} className="contentParent">
+        <div ref={contentRef} className="collapsibleContent">
           {props.children}
         </div>
       </div>
