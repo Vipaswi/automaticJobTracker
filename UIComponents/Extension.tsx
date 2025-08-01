@@ -1,6 +1,7 @@
 import {useState, useEffect, useRef} from 'react'
 import { ConfirmationForm } from './ConfirmationForm';
 import React from 'react';
+import { Topbar } from './TopBar';
 
 export const Extension = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -46,7 +47,10 @@ export const Extension = () => {
     {!loggedIn ? 
     <button className="g-signin2" id="signIn" onClick={logIn}>Sign In</button> 
     : 
-      <ConfirmationForm/>
+      <>
+        <Topbar />
+        <ConfirmationForm/>
+      </>
     }
   </>
 }
