@@ -4,8 +4,8 @@ export const Topbar = () => {
     window.location.reload();
   }
 
-  return <div className="min-w-container flex justify-between items-center bg-white mt-2 ml-1 mr-1">
-    <img src="../public/icon.png" alt="icon image" />
+  return <div className="topBar">
+    <img className="border-0 overflow-hidden rounded-sm"  width={30} height={30} src="/icon.png" alt="dropdown image" />
     <button onClick={logOut}>Log Out</button>
   </div>;
 }

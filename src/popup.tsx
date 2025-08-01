@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Extension } from '../UIComponents/extension';
+import { Extension } from '../UIComponents/Extension';
+import './styles.css';
 
 // ReactDOM.render(
 //   <React.StrictMode>

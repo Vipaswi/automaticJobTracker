@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
 /* Existing styles - ensuring they don't conflict */
 .informationContainer{
   display: flex;
@@ -21,7 +24,8 @@
               0 2px 4px -2px rgba(0,0,0,0.1);
   align-items: center;
   justify-content: center;
-  background-color: white;        
+  background-color: white; 
+  overflow-y: scroll;       
 }
 
 .root{

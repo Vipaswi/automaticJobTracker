@@ -5,16 +5,17 @@
   justify-content: center;
   width: inherit;
   height: inherit;
-  overflow-x:hidden;
 }
 
 .formArray{
   display: flex;
   flex-direction: row;
-  min-width: max-content;
-  height: 10em;
+  width: inherit;
+  height: fit-content;
   align-items: center;
   justify-content: center;
+  max-height: 20rem;
+  object-fit: contain;
 }
 
 .formArray button{
@@ -61,10 +62,23 @@
   max-width: 24rem; /* 384px */
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   margin: 0.5rem 0; /* 8px */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
   color: #000000;
   background-color: #ffffff;
+  text-wrap: wrap;
+  overflow-wrap:normal;
+}
+
+/*Top bar*/
+
+.topBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem; /* 8px */
+  background-color: #f3f4f6; /* Tailwind's gray-100 */
+  border-bottom: 1px solid #e5e7eb; /* Tailwind's gray-200 */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  color: #000000; 
 }
