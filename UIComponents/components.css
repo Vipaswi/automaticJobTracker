@@ -5,6 +5,13 @@
   justify-content: center;
   width: inherit;
   height: inherit;
+  max-height: 500px;
+  padding: 0.5rem;
+  overflow-y: scroll;
+  scrollbar-color: #cbd5e1; /* Tailwind's gray-300 */
+  scrollbar-width: thin; 
+  scrollbar-track-color: transparent;
+  overflow-x: hidden;
 }
 
 .formArray{
@@ -14,14 +21,12 @@
   height: fit-content;
   align-items: center;
   justify-content: center;
-  max-height: 20rem;
-  object-fit: contain;
+  object-fit:contain;
+  margin: 0.5rem;
 }
 
 .formArray button{
   text-align: center;
-  border: 1px lightgray solid;
-  border-radius: 50%;
   padding: 3px;
 }
 
@@ -34,17 +39,17 @@
   justify-content: center;
 }
 
+.mainForm p{
+  padding: 0.5rem;
+}
+
 
 /*Extension.tsx*/
 
 .collapsibleContent {
-    border: 1px solid rgb(128, 123, 123);
     padding: 0.5rem;
-    border-radius: 5px;
     width: 100%;
     background-color: lightsteelblue;
-    border-radius: 3%;
-    border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
     
@@ -58,10 +63,12 @@
   border: 1px solid lightcyan;
   border-radius: 0.25rem; /* 4px */
   padding: 0.5rem; /* 8px */
-  width: 100%;
+  width: 90%;
   max-width: 24rem; /* 384px */
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  margin: 0.5rem 0; /* 8px */
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
   color: #000000;
   background-color: #ffffff;
   text-wrap: wrap;
@@ -71,6 +78,9 @@
 /*Top bar*/
 
 .topBar{
+  position: sticky;
+  top: 0;
+  z-index: 15;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -81,4 +91,36 @@
   border-bottom: 1px solid #e5e7eb; /* Tailwind's gray-200 */
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   color: #000000; 
+}
+
+/*Location Drop Down*/
+
+.locationButtonFirst{
+  width: 90%;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: lightcyan 1px solid;
+  margin: 0.5rem 0; /* 8px */
+  color: black;
+  padding: 0.5rem;
+}
+
+.locationButton{
+  width: 100%;
+  text-align: center;
+  background-color: var(--color-indigo-50);
+  color: black;
+}
+
+.locationButton:hover{
+  background-color: var(--color-indigo-100);
+}
+
+/*Labeled Form*/
+.mainForm .labeledForm :first-child{
+  margin: 0.5rem;
+}
+
+.mainFrom .labeledForm ::not(:first-child){
+  margin-bottom: 0.5rem;
 }
