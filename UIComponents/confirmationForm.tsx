@@ -13,6 +13,8 @@ export const ConfirmationForm = () => {
   const [jobTitle, setJobTitle] = useState("this is. atitle");
   const [location, setLocation] = useState(USStateAbbreviations[0]);
   const [progressStatus, setProgressStatus] = useState(null);
+  const [confirmationForms, setConfirmationForms] = useState([]);
+  const [confirmationFormNumber, setConfirmationFormNumber] = useState(0);
 
   const [emailIndex, setEmailIndex] = useState(0);
 
@@ -186,10 +188,11 @@ export const ConfirmationForm = () => {
           <LabeledForm label="Location">
             <LocationDropDown location={location} handleSelect={handleLocationSelect} />
           </LabeledForm>
-          {/*<button className="bg-blue-400 text-white m-2 p-1">Confirm</button>*/}
+          <button className="confirmationButton">Confirm</button>
         </div>
         <button onClick={goForwards}> {">"} </button>
       </div>
+      <p className="text-sm w-full text-center text-gray-400">{emailIndex + 1}/{confirmationFormNumber}</p>
     </div>
   )
 }

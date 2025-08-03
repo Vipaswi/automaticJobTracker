@@ -51,6 +51,7 @@
     width: 100%;
     background-color: lightsteelblue;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid lightgray;
   }
     
 .contentParent {
@@ -117,10 +118,17 @@
 }
 
 /*Labeled Form*/
-.mainForm .labeledForm :first-child{
+.mainForm .labeledForm :first-child :not(.locationButton){
   margin: 0.5rem;
 }
 
 .mainFrom .labeledForm ::not(:first-child){
   margin-bottom: 0.5rem;
+}
+
+.confirmationButton{
+  background-color: var(--color-emerald-700);
+  color: white;
+  width: 90%;
+  margin-top: 0.5rem;
 }

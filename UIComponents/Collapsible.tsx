@@ -27,7 +27,7 @@ export const Collapsible = (props: Props) => {
       </div>
 
       <div style={{ height }} className="contentParent w-[90%] max-h-50"  >
-        <div ref={contentRef} className="border-0 collapsibleContent bg-gradient-to-b from-blue-200 via-blue-300 to-cyan-500 overflow-y-scroll h-full rounded-b-sm">
+        <div ref={contentRef} className="collapsibleContent bg-gradient-to-b from-blue-200 via-blue-300 to-cyan-500 overflow-y-scroll h-full rounded-b-sm">
           {props.children}
         </div>
       </div>
