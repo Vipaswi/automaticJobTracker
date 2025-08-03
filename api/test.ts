@@ -1,8 +1,9 @@
 import { GoogleApis } from "googleapis"
 import { sampleMessageEmailFailures,  sampleMessageEmailApplications, sampleInterviewEmails, sampleIrrelevantEmails, sampleOfferEmails} from "./sampleEmails"
 import { GoogleConfigurable } from "googleapis/build/src/apis/abusiveexperiencereport"
-import { parseEmail, progressStatus } from "./JobParser"
+import { parseEmail } from "./JobParser"
 import base64url from "base64url";
+import { progressStatus } from "../progressStatus";
 
 let failures = 0;
 

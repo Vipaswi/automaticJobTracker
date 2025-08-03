@@ -2,10 +2,17 @@
  * @todo Track applications which were wrong (changed by the user) and flag them in temporary storage to be added in the future
  */
 const express = require("express");
+const cors = require('cors');
 const { google } = require('googleapis');
 
+// Configure CORS for a specific origin
+const corsOptions = {
+  origin: 'chrome-extension://hnljpehfbbhiipcpbgijgghdpkflnpje'
+};
+
 const server = express();
-server.use(express.json())
+server.use(express.json());
+server.use(cors(corsOptions));
 
 const PORT = 8080; //Dev purposes
 
@@ -48,7 +55,7 @@ const fetchMessageList = async () => {
 // The first method is responsible for pinging the server every X minutes, where X changes based on if the user is active or not.
 // It determines if new emails have arrived from the gmail messages.list api, and comparing it to the most recent id received/processed.
 // If there were new emails, it pulls in all the emails and runs them through the parseEmail function.
-server.get("/token", (req,res) => {
+server.get("", (req,res) => {
   res.status(200).json({
     name: "joe"
   });

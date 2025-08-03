@@ -14,6 +14,7 @@ import {USStateAbbreviations} from '../Phrases/locations'
 import { google, GoogleApis } from 'googleapis';
 import base64url from "base64url";
 import ahocorasick from "ahocorasick"
+import {progressStatus} from "../progressStatus.js"
 
 const testing = true;
 
@@ -26,14 +27,6 @@ const prefix = jobTitlePrefixes.join("|");
 const postfix = jobTitlePostfixes.join("|");
 const timeOfYear = jobTimeOfYear.join("|");
 
-export enum progressStatus{
-  NULL = "NULL",
-  IRRELEVANT = "IRRELEVANT",
-  NEW = "NEW",
-  FAIL = "FAIL",
-  INTERVIEW = "INTERVIEW",
-  OFFER = "OFFER"
-}
 
 function printOnFailure(printString: string, result : progressStatus, expected : progressStatus){
   if(result != expected && testing){

@@ -1,0 +1,134 @@
+.singleForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: inherit;
+  max-height: 500px;
+  padding: 0.5rem;
+  overflow-y: scroll;
+  scrollbar-color: #cbd5e1; /* Tailwind's gray-300 */
+  scrollbar-width: thin; 
+  scrollbar-track-color: transparent;
+  overflow-x: hidden;
+}
+
+.formArray{
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  object-fit:contain;
+  margin: 0.5rem;
+}
+
+.formArray button{
+  text-align: center;
+  padding: 3px;
+}
+
+.mainForm{
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainForm p{
+  padding: 0.5rem;
+}
+
+
+/*Extension.tsx*/
+
+.collapsibleContent {
+    padding: 0.5rem;
+    width: 100%;
+    background-color: lightsteelblue;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid lightgray;
+  }
+    
+.contentParent {
+    overflow: hidden;
+    transition: height ease 0.9s;
+}
+
+
+.mainForm input{
+  border: 1px solid lightcyan;
+  border-radius: 0.25rem; /* 4px */
+  padding: 0.5rem; /* 8px */
+  width: 90%;
+  max-width: 24rem; /* 384px */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  color: #000000;
+  background-color: #ffffff;
+  text-wrap: wrap;
+  overflow-wrap:normal;
+}
+
+/*Top bar*/
+
+.topBar{
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem; /* 8px */
+  background-color: #f3f4f6; /* Tailwind's gray-100 */
+  border-bottom: 1px solid #e5e7eb; /* Tailwind's gray-200 */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  color: #000000; 
+}
+
+/*Location Drop Down*/
+
+.locationButtonFirst{
+  width: 90%;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: lightcyan 1px solid;
+  margin: 0.5rem 0; /* 8px */
+  color: black;
+  padding: 0.5rem;
+}
+
+.locationButton{
+  width: 100%;
+  text-align: center;
+  background-color: var(--color-indigo-50);
+  color: black;
+}
+
+.locationButton:hover{
+  background-color: var(--color-indigo-100);
+}
+
+/*Labeled Form*/
+.mainForm .labeledForm :first-child :not(.locationButton){
+  margin: 0.5rem;
+}
+
+.mainFrom .labeledForm ::not(:first-child){
+  margin-bottom: 0.5rem;
+}
+
+.confirmationButton{
+  background-color: var(--color-emerald-700);
+  color: white;
+  width: 90%;
+  margin-top: 0.5rem;
+}
