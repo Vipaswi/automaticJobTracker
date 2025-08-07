@@ -1,9 +1,9 @@
 import { USStateAbbreviations } from '../Phrases/locations';
 import { progressStatus } from '../progressStatus';
 import React, { useState, useEffect } from 'react';
-import { LocationDropDown } from './LocationDropDown';
 import { Collapsible } from './Collapsible';
 import { LabeledForm } from './LabeledForm';
+import { LocationDropDown } from './LocationDropDown';
 
 export const ConfirmationForm = () => {
   // The following state should be saved in cache and retrieved from 

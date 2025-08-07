@@ -50,6 +50,8 @@ const fetchMessageList = async () => {
 
 }
 
+
+
 // Define Methods:
 
 // The first method is responsible for pinging the server every X minutes, where X changes based on if the user is active or not.

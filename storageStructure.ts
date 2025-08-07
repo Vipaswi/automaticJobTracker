@@ -1,6 +1,6 @@
 import { progressStatus } from "../progressStatus"
 
-export interface userObject{
+export interface UserObject{
   id: string, 
   name: string,
   email: string,
@@ -18,6 +18,10 @@ export enum FormError {
   COMPANY_NAME = "Company Name",
   LOCATION = "Location",
   PROGRESS = "Progress"
+}
+
+export interface UserFailedForms{
+  FailedForms: FailedForm[]
 }
 
 export interface FailedForm {
