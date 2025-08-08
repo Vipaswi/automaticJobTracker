@@ -29,18 +29,25 @@ import {
 import {signInWithCredential, UserCredential} from 'firebase/auth';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { UserObject } from './storageStructure';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// TODO: Replace with your Firebase project configuration
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: FIRESTORE_API_KEY,
+  authDomain: FIRESTORE_AUTH_DOMAIN,
+  projectId: FIRESTORE_PROJECT_ID,
+  storageBucket: FIRESTORE_STORAGE_BUCKET,
+  messagingSenderId: FIRESTORE_MESSAGING_SENDER_ID,
+  appId: FIRESTORE_APP_ID,
+  measurementId: FIRESTORE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
+const analystics = getAnalytics(app);
 
 // Get a reference to the Firestore service
 const db = getFirestore(app);
@@ -183,4 +190,33 @@ export const updateFailure = async(chromeUserToken: string, newFailureForm: text
     console.error(`Error updating failure form: ${error}`);
   }
   
+}
+
+/**
+ * 
+ * @param chromeUserToken - The access token of the user through chrome's default identity api
+ * @param newJob - the new job object used to update the applied jobs 
+ */
+export const updateAppliedJobs = async(chromeUserToken: string, newJob: FormObject) => {
+  try {
+    const userCredential = await verifyAuthToken(chromeUserToken);
+
+    //Update applied jobs
+    const appliedJobRef = doc(db, 'appliedJobs', userCredential.user.uid);
+    const appliedJobDoc = await getDoc(appliedJobRef);
+    const appliedJobData = appliedJobDoc.data();
+    
+    if (appliedJobData) {
+      await updateDoc(appliedJobRef, {
+        appliedJobs: arrayUnion(newJob)
+      });
+    } else {
+      // If none exist, create a new doc.
+      await setDoc(appliedJobRef, {
+        appliedJobs: [newJob]
+      });
+    }
+  } catch (error) {
+    throw new Error('Error updating applied jobs: ' + error);
+  }
 }

@@ -31,5 +31,14 @@ export interface FailedForm {
   progress_actual?: progressStatus
 }
 
-
+export interface Form{
+  companyName: string,
+  jobTitle: string,
+  location: string,
+  progressStatus: progressStatus,
+  email: string,
+  formId: string, // unique identifier for the form
+  createdAt: Date,
+  updatedAt: Date
+}
 
