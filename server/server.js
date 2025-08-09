@@ -8,7 +8,7 @@ const { storeNewUser, getUser, deleteUser } = require("./firestoreAPI");
 
 // Configure CORS for a specific origin
 const corsOptions = {
-  origin: 'chrome-extension://hnljpehfbbhiipcpbgijgghdpkflnpje'
+  origin: CHROME_EXTENSION_ID
 };
 
 const server = express();
@@ -17,17 +17,15 @@ server.use(cors(corsOptions));
 
 const PORT = 8080; //Dev purposes
 
-
-
 // Define Methods:
 
-server.get("", (req,res) => {
+server.get("", (req, res) => {
   res.status(200).json({
     name: "joe"
   });
 });
 
-server.post("/pubsub-handler", async (req,res) => {
+server.post("/pubsub-handler", async (req, res) => {
   const { message } = req.body;
 
   // Convert from Base 64 to a string, and then parse through it with JSON
@@ -48,8 +46,8 @@ server.post("/pubsub-handler", async (req,res) => {
   const list = await listResponse.json();
 
   // Tell pub sub that it was successful
-  res.status(200).send(); 
-  
+  res.status(200).send();
+
 })
 
 
@@ -59,14 +57,15 @@ server.post("/pubsub-handler", async (req,res) => {
  * Gets a user object from the firestore databse
  */
 
-server.get("/getUser", async(req, rest) => {
+server.get("/getUser", async (req, rest) => {
   try {
-    const {chromeUserToken} = req.body;
+    const { chromeUserToken } = req.body;
     if (!chromeUserToken) {
       return res.status(400).json({
         message: "Chrome user token is required"
       });
     }
+
     const user = await getUser(chromeUserToken);
     if (!user) {
       return res.status(404).json({
@@ -84,9 +83,8 @@ server.get("/getUser", async(req, rest) => {
  * Stores a new user into the firestore database
 */
 server.post("/newUser", async (req, res) => {
-  const {chromeUserToken, userObject} = req.body;
+  const { chromeUserToken, userObject } = req.body;
   try {
-    //TODO: Add logic to ensure that the user is not already stored
     const user = await getUser(chromeUserToken);
     if (user) {
       return res.status(400).json({
@@ -96,7 +94,7 @@ server.post("/newUser", async (req, res) => {
 
     // Store new user if they don't already exist
     await storeNewUser(chromeUserToken, userObject);
-    
+
     res.status(200).json({
       message: "User stored successfully"
     });
@@ -109,9 +107,9 @@ server.post("/newUser", async (req, res) => {
   }
 })
 
-server.patch("/updateUser", async (req,res) => {
+server.patch("/updateUser", async (req, res) => {
   try {
-    const {chromeUserToken} = req.body;
+    const { chromeUserToken } = req.body;
     if (!chromeUserToken) {
       return res.status(400).json({
         message: "Chrome user token is required"
@@ -126,7 +124,7 @@ server.patch("/updateUser", async (req,res) => {
     }
 
     // Update user:
-    const {userObject} = req.body;
+    const { userObject } = req.body;
     if (!userObject) {
       return res.status(400).json({
         message: "User object is required"
@@ -145,7 +143,7 @@ server.patch("/updateUser", async (req,res) => {
 
 server.delete("/deleteUser", async (req, res) => {
   try {
-    const {chromeUserToken} = req.body;
+    const { chromeUserToken } = req.body;
     if (!chromeUserToken) {
       return res.status(400).json({
         message: "Chrome user token is required"
@@ -163,46 +161,60 @@ server.delete("/deleteUser", async (req, res) => {
     });
     throw new Error(`Error deleting user: ${error.message}`);
   }
-  
+})
+
 server.post("/updateAppliedJobs", async (req, res) => {
   try {
-    const {chromeUserToken, newJob} = req.body;
+    const { chromeUserToken, newJob } = req.body;
     if (!chromeUserToken || !newJob) {
       return res.status(400).json({
         message: "Chrome user token and new job are required"
       });
     }
-    
+
     // Update applied jobs in the database
     await updateAppliedJobs(chromeUserToken, newJob);
     res.status(200).json({
       message: "Applied jobs updated successfully"
     });
 
-  } catch(error){
+  } catch (error) {
     res.status(500).json({
       message: "Error updating applied jobs",
       error: error.message
     });
     throw new Error(`Error updating applied jobs: ${error.message}`);
   }
+})
 
-server.post("updateFailures", async(req,res( => {
-  try{
+server.post("updateFailures", async (req, res) => {
+  try {
+    const { chromeUserToken, newFailure } = req.body;
+    if (!chromeUserToken || !newFailure) {
+      return res.status(400).json({
+        message: "Chrome user token and new failure are required"
+      });
+    }
 
-  } catch(error){
+    // Update failures in the database
+    await updateFailures(chromeUserToken, newFailure);
+    res.status(200).json({
+      message: "Failures updated successfully"
+    });
+
+  } catch (error) {
     rest.status(500).json({
       message: "Error updating failures",
       error: error.message
     });
     throw new Error(`Error updating applied jobs: ${error.message}`);
-  }
-})))
+  };
+})
 
 // #endregion
 
 // Start listening for calls to the server
-server.listen(PORT, () => {console.log("Server is up and listening!")});
+server.listen(PORT, () => { console.log("Server is up and listening!") });
 
 
 
