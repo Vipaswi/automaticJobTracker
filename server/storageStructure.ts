@@ -1,4 +1,4 @@
-import { progressStatus } from "../progressStatus"
+import { progressStatus } from "../progressStatus.js"
 
 export interface UserObject{
   id: string, 
