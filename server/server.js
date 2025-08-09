@@ -4,6 +4,7 @@
 const express = require("express");
 const cors = require('cors');
 const { google } = require('googleapis');
+const { storeNewUser, getUser, deleteUser } = require("./firestoreAPI");
 
 // Configure CORS for a specific origin
 const corsOptions = {
@@ -16,70 +17,16 @@ server.use(cors(corsOptions));
 
 const PORT = 8080; //Dev purposes
 
-/**
- * Used for event driven api-calls. 
- * 
- * @param {*} userAccessToken : The access token for the user
- * @returns the data historyId
- */
-async function watchGmail(userAccessToken) {
-  const auth = new google.auth.OAuth2();
-  auth.setCredentials({ access_token: userAccessToken });
-
-  const gmail = google.gmail({ version: 'v1', auth });
-
-  const res = await gmail.users.watch({
-    userId: 'me',
-    requestBody: {
-      topicName: 'projects/automatic-job-tracker/topics/emails',
-      labelIds: ['INBOX'],
-      labelFilterBehavior: include
-    }
-  });
-
-  console.log('Watch response:', res.data);
-  return res.data.historyId;
-}
-
-const fetchMessageList = async () => {
-  try {
-    const res = await fetch("https://gmail.googleapis.com/gmail/v1/users/{userId}/messages");
-  } catch (error) {
-    
-  }
-
-}
-
 
 
 // Define Methods:
 
-// The first method is responsible for pinging the server every X minutes, where X changes based on if the user is active or not.
-// It determines if new emails have arrived from the gmail messages.list api, and comparing it to the most recent id received/processed.
-// If there were new emails, it pulls in all the emails and runs them through the parseEmail function.
 server.get("", (req,res) => {
   res.status(200).json({
     name: "joe"
   });
 });
 
-/**
- * The response body is something like this from Gmail:
- * {
-  "message": {
-    "data": "base64-encoded-string",
-    "messageId": "big-number",
-    "publishTime": "2025-07-09T15:00:00.000Z",
-    "attributes": {}
-  },
-  "subscription": "projects/YOUR_PROJECT_ID/subscriptions/YOUR_SUBSCRIPTION_NAME"
-}
-
- * Note that the base-64-encoded string also contains the emailAddress and historyId.
- *
- * This function determines the number of new messages and parses them to determine whether the message should be stored or discarded
- * in the spreadsheets file. If stored, it calls the spreadsheets api.
- */
 server.post("/pubsub-handler", async (req,res) => {
   const { message } = req.body;
 
@@ -105,6 +52,154 @@ server.post("/pubsub-handler", async (req,res) => {
   
 })
 
+
+/** #region firestore API Calls */
+
+/**
+ * Gets a user object from the firestore databse
+ */
+
+server.get("/getUser", async(req, rest) => {
+  try {
+    const {chromeUserToken} = req.body;
+    if (!chromeUserToken) {
+      return res.status(400).json({
+        message: "Chrome user token is required"
+      });
+    }
+    const user = await getUser(chromeUserToken);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    return user;
+  } catch (error) {
+    throw new Error(`Error getting user: ${error.message}`);
+  }
+})
+
+/** 
+ * Stores a new user into the firestore database
+*/
+server.post("/newUser", async (req, res) => {
+  const {chromeUserToken, userObject} = req.body;
+  try {
+    //TODO: Add logic to ensure that the user is not already stored
+    const user = await getUser(chromeUserToken);
+    if (user) {
+      return res.status(400).json({
+        message: "User already exists"
+      });
+    }
+
+    // Store new user if they don't already exist
+    await storeNewUser(chromeUserToken, userObject);
+    
+    res.status(200).json({
+      message: "User stored successfully"
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error storing user",
+      error: error.message
+    });
+  }
+})
+
+server.patch("/updateUser", async (req,res) => {
+  try {
+    const {chromeUserToken} = req.body;
+    if (!chromeUserToken) {
+      return res.status(400).json({
+        message: "Chrome user token is required"
+      });
+    }
+
+    const user = await getUser(chromeUserToken);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    // Update user:
+    const {userObject} = req.body;
+    if (!userObject) {
+      return res.status(400).json({
+        message: "User object is required"
+      });
+    }
+    await updateUser(chromeUserToken, userObject);
+
+    res.status(200).json({
+      message: "User updated successfully"
+    });
+
+  } catch (error) {
+    throw new Error(`Error updating user: ${error.message}`);
+  }
+})
+
+server.delete("/deleteUser", async (req, res) => {
+  try {
+    const {chromeUserToken} = req.body;
+    if (!chromeUserToken) {
+      return res.status(400).json({
+        message: "Chrome user token is required"
+      });
+    }
+
+    await deleteUser(chromeUserToken);
+    res.status(200).json({
+      message: "User deleted successfully"
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error deleting user"
+    });
+    throw new Error(`Error deleting user: ${error.message}`);
+  }
+  
+server.post("/updateAppliedJobs", async (req, res) => {
+  try {
+    const {chromeUserToken, newJob} = req.body;
+    if (!chromeUserToken || !newJob) {
+      return res.status(400).json({
+        message: "Chrome user token and new job are required"
+      });
+    }
+    
+    // Update applied jobs in the database
+    await updateAppliedJobs(chromeUserToken, newJob);
+    res.status(200).json({
+      message: "Applied jobs updated successfully"
+    });
+
+  } catch(error){
+    res.status(500).json({
+      message: "Error updating applied jobs",
+      error: error.message
+    });
+    throw new Error(`Error updating applied jobs: ${error.message}`);
+  }
+
+server.post("updateFailures", async(req,res( => {
+  try{
+
+  } catch(error){
+    rest.status(500).json({
+      message: "Error updating failures",
+      error: error.message
+    });
+    throw new Error(`Error updating applied jobs: ${error.message}`);
+  }
+})))
+
+// #endregion
 
 // Start listening for calls to the server
 server.listen(PORT, () => {console.log("Server is up and listening!")});

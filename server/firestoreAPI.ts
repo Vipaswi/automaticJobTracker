@@ -10,6 +10,7 @@
 /** The constant link to the document that stores all failures */
 const failureLink = "failures";
 
+require('dotenv').config();
 import { initializeApp } from 'firebase/app';
 import { 
   getFirestore, 
@@ -28,7 +29,8 @@ import {
 } from "firebase/firestore";
 import {signInWithCredential, UserCredential} from 'firebase/auth';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { UserObject } from './storageStructure';
+import { getAnalytics } from 'firebase/analytics';
+import { FailedForm, Form, UserObject } from './storageStructure';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -37,13 +39,13 @@ import { UserObject } from './storageStructure';
 
 
 const firebaseConfig = {
-  apiKey: FIRESTORE_API_KEY,
-  authDomain: FIRESTORE_AUTH_DOMAIN,
-  projectId: FIRESTORE_PROJECT_ID,
-  storageBucket: FIRESTORE_STORAGE_BUCKET,
-  messagingSenderId: FIRESTORE_MESSAGING_SENDER_ID,
-  appId: FIRESTORE_APP_ID,
-  measurementId: FIRESTORE_MEASUREMENT_ID
+  apiKey: process.env.FIRESTORE_API_KEY,
+  authDomain: process.env.FIRESTORE_AUTH_DOMAIN,
+  projectId: process.env.FIRESTORE_PROJECT_ID,
+  storageBucket: process.env.FIRESTORE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIRESTORE_MESSAGING_SENDER_ID,
+  appId: process.env.FIRESTORE_APP_ID,
+  measurementId: process.env.FIRESTORE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
@@ -171,7 +173,7 @@ export const deleteUser = async(chromeUserToken: string) => {
   }
 }
 
-export const updateFailure = async(chromeUserToken: string, newFailureForm: text) = {
+export const updateFailure = async(chromeUserToken: string, newFailureForm: FailedForm) => {
   
   try {
     const userCredential = await verifyAuthToken(chromeUserToken);
@@ -182,7 +184,7 @@ export const updateFailure = async(chromeUserToken: string, newFailureForm: text
     
     if (failureFormData) {
       updateDoc(failureFormRef, {
-        failures: arrayUnion(newFailureForm);
+        failures: arrayUnion(newFailureForm)
       })
     }
   }
@@ -197,7 +199,7 @@ export const updateFailure = async(chromeUserToken: string, newFailureForm: text
  * @param chromeUserToken - The access token of the user through chrome's default identity api
  * @param newJob - the new job object used to update the applied jobs 
  */
-export const updateAppliedJobs = async(chromeUserToken: string, newJob: FormObject) => {
+export const updateAppliedJobs = async(chromeUserToken: string, newJob: Form) => {
   try {
     const userCredential = await verifyAuthToken(chromeUserToken);
 
