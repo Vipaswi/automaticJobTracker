@@ -8,29 +8,30 @@ export const Extension = () => {
   const signInButton = useRef(null);
 
   function logIn () {
-    chrome.identity.getAuthToken({ interactive: true }, function (token: any) {
+    chrome.identity.getAuthToken({ interactive: true }, async function (token: any) {
 
       if (chrome.runtime.lastError || !token) {
         console.error('Auth Error:', chrome.runtime.lastError);
         return;
       } 
 
-      setLoggedIn(true);
+      await fetch("https://localhost:8080/getUser", {
+        method: "GET",
+        body: JSON.stringify({ chromeUserToken: token }),
+      })
 
-       // OAuth2 gmail token
-      console.log('Gmail Token:', token);
+      setLoggedIn(true);
 
       // Storage:
       //chrome.storage.local.set({oauthtoken: token});
 
       // send token to backend (not implemented yet)
-      fetch('http://localhost:8080', {
+      fetch('localhost:8080', {
         method: 'POST',
         headers: {
           Authorization: 'Bearer ' + token,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ source: 'chrome-extension' })
       })
         .then(response => response.json())
         .then(data => {

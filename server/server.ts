@@ -59,8 +59,8 @@
 
   server.get("/getUser", async (req, res) => {
     try {
-      const { chromeUserToken } = req.body;
-      if (!chromeUserToken) {
+      const chromeUserToken = req.get("Authorization");
+      if (chromeUserToken == undefined || chromeUserToken == null) {
         return res.status(400).json({
           message: "Chrome user token is required"
         });

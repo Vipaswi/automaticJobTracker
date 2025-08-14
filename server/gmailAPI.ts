@@ -1,4 +1,4 @@
-
+import { google } from 'googleapis';
 /**
  * Used for event driven api-calls. 
  * 
